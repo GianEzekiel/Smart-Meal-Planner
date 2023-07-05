@@ -3,12 +3,15 @@
 #include <stdio.h>
 
 using namespace std;
-void welcome_page()
+void welcome_page(string name)
 {
+system("cls");
 const char *welcome =
-"\t\t\t\t\t\t|SM PLANNER: Your Smart Meal Planner|\n"
-"\t\t\t\t\t\t-------------------------------------\n\n\n\n";
-cout<<welcome<<endl<<endl;
+"\t\t\t\t\t|SM PLANNER: Your Smart Meal Planner|\n"
+"--------------------------------------------------|USER INFORMATION|----------------------------------------------------\n";
+cout<<welcome;
+cout<<"Name: "<<name<<endl;
+cout<<"------------------------------------------------------------------------------------------------------------------------\n";
 }
 void loading_screen()
 {
@@ -64,11 +67,11 @@ int main()
 string name;
 loading_screen();
 system("cls");
-welcome_page();
 cout<<"\t\t\t\t\t\tWelcome To SM Planner!\n";
 cout<<"\t\t\t\t\tBefore we start we would love to know your name\n";
 cout<<"Please enter your name: ";
-cin>>name;
+getline(cin,name);
+welcome_page(name);
 //after this siguro pwede natin iredirect sa BMI Calculator?
 
 return 0;
