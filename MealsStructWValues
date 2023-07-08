@@ -7,7 +7,7 @@ struct meals{
     string name;
     int calr;
     int protn;
-}set[75];
+}set[75]; //75 sets ng meals, bali magiging tig 25 tayo (25 breakfast, 25 lunch, 25 dinner)
 
 int predefmeals(){
 	//breakfast[0-24]
@@ -32,4 +32,5 @@ int predefmeals(){
 	set[54].name = "Grilled cheese sandwich and tomato soup";
 	set[54].calr = 500;
 	set[54].protn = 20;
+	//5 lang muna ginawa ko
 }
