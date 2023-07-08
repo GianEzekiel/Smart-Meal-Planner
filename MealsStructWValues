@@ -1,0 +1,35 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+//Struct lang ng mga meals na may value na name, calories, and protein
+struct meals{
+    string name;
+    int calr;
+    int protn;
+}set[75];
+
+int predefmeals(){
+	//breakfast[0-24]
+
+
+	//lunch[25-49]
+
+
+	//diner[50-74]
+	set[50].name = "Chicken and vegetable stir-fry";
+	set[50].calr = 350;
+	set[50].protn = 30;
+	set[51].name = "Salmon and roasted vegetables";
+	set[51].calr = 400;
+	set[51].protn = 35;
+	set[52].name = "Spaghetti bolognese";
+	set[52].calr = 450;
+	set[52].protn = 25;
+	set[53].name = "Vegetable curry with rice";
+	set[53].calr = 300;
+	set[53].protn = 15;
+	set[54].name = "Grilled cheese sandwich and tomato soup";
+	set[54].calr = 500;
+	set[54].protn = 20;
+}
