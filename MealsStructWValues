@@ -11,10 +11,98 @@ struct meals{
 
 int predefmeals(){
 	//breakfast[0-24]
+	set[0].name = "Veggie Omelette";
+	set[0].calr = 275;
+	set[0].protn = ;
+	set[1].name = "Greek Yogurt Parfait";
+	set[1].calr = 275;
+	set[1].protn = ;
+	set[2].name = "Avocado Toast";
+	set[2].calr = 175;
+	set[2].protn = ;
+	set[3].name = "Overnight Chia Pudding";
+	set[3].calr = 175;
+	set[3].protn = ;
+	set[4].name = "Smoothie Bowl";
+	set[4].calr = 275;
+	set[4].protn = ;
+	set[5].name = "Whole Grain Cereal";
+	set[5].calr = 175;
+	set[5].protn = ;
+	set[6].name = "Egg and Veggie Wrap";
+	set[6].calr = 275;
+	set[6].protn = ;
+	set[7].name = "Banana Pancakes";
+	set[7].calr = 250;
+	set[7].protn = ;
+	set[8].name = "Cottage Cheese with Fruit";
+	set[8].calr = 175;
+	set[8].protn = ;
+	set[9].name = "Breakfast Burrito";
+	set[9].calr = 325;
+	set[9].protn = ;
+	set[10].name = "Quinoa Breakfast Bowl";
+	set[10].calr = 250;
+	set[10].protn = ;
+	set[11].name = "Apple Cinnamon Oatmeal";
+	set[11].calr = 225;
+	set[11].protn = ;
+	set[12].name = "Veggie Breakfast Wrap";
+	set[12].calr = 275;
+	set[12].protn = ;
+	set[13].name = "Protein Smoothie";
+	set[13].calr = 225;
+	set[13].protn = ;
+	set[14].name = "Breakfast Quiche";
+	set[14].calr = 150;
+	set[14].protn = ;
+	set[15].name = "Peanut Butter Banana Toast";
+	set[15].calr = 275;
+	set[15].protn = ;
+	set[16].name = "Green Breakfast Bowl";
+	set[16].calr = 225;
+	set[16].protn = ;
+	set[17].name = "Tofu Scramble";
+	set[17].calr = 250;
+	set[17].protn = ;
+	set[18].name = "Sweet Potato Hash";
+	set[18].calr = 275;
+	set[18].protn = ;
 
 
+	
 	//lunch[25-49]
 
+	set[25].name = "Teriyaki Grilled Eggplant";
+	set[25].calr = 163;
+	set[25].protn = 4;
+	set[26].name = "Grilled Pork Tenderloin";
+	set[26].calr = 210;
+	set[26].protn = 24;
+	set[27].name = "Taco Soup";
+	set[27].calr = 163;
+	set[27].protn = 15;
+	set[28].name = "Skillet Egg Frittata";
+	set[28].calr = 304;
+	set[28].protn = 25;
+	set[29].name = "Mexican-Spiced Grilled Chicken with Nectarine Salsa";
+	set[29].calr = 351;
+	set[29].protn = 37.2;
+	set[30].name = "Vegan Grain Bowl Pesto";
+	set[30].calr = 480;
+	set[30].protn = 20;
+	set[31].name = "Paleo & Whole30 Sesame Chicken";
+	set[31].calr = 432;
+	set[31].protn = 29;
+	set[32].name = "Sheet Pan Honey Lemon Salmon";
+	set[32].calr = 758;
+	set[32].protn = 43;
+	set[33].name = "White Chicken Chili";
+	set[33].calr = 383;
+	set[33].protn = 33;
+	set[34].name = "Asian Chicken Quinoa Bowl with Almond Butter Sauce";
+	set[34].calr =	34;
+	set[34].protn = 34;
 
 	//diner[50-74]
 	set[50].name = "Chicken and vegetable stir-fry";
