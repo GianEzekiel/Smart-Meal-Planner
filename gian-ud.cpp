@@ -1,5 +1,3 @@
-// mag-iinput si user ng kanyang budget at calorie intake
-// magsusuggest ang application ng
 #include <ctime>
 #include <iostream>
 #include <string>
@@ -11,6 +9,8 @@ string bmiResult;
 
 class Info {
 public:
+    string name;
+    int age;
     float weight;
     float height;
     string units;
