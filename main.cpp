@@ -1,6 +1,6 @@
 #include <iostream>
 #include <windows.h>
-#include <stdio.h>
+
 
 using namespace std;
 void welcome_page(string name)
@@ -43,7 +43,6 @@ char const *text =
 SetConsoleCP(437);
 SetConsoleOutputCP(437);
 system("Color 09");
-printf("\e[?251");
 cout<<text;
 for (int i = 0; i<60;i++)
 {
