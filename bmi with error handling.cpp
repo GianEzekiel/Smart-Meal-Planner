@@ -5,6 +5,8 @@
 #include <cstdlib>
 #include <queue>
 #include <limits>
+#include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -220,7 +222,7 @@ void weightloss(float weight, float height, int age, char sex) {
         int gainweight = menBMR - 400;
 
         cout << "Your recommended calorie maintenance is " << menBMR << endl;
-        cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
+        cout << "If you want to gain weight slowly and steadily, aim for 300â€“500 calories more than you burn each day. If you want to gain weight fast, aim for around 700â€“1,000 calories above your maintenance level." << endl;
 
         cout << "Here is the recommended meal." << endl;
         srand(time(0)); // Seed the random number generator with current time
@@ -265,7 +267,7 @@ void weightloss(float weight, float height, int age, char sex) {
         int gainweight = menBMR - 400;
 
         cout << "Your recommended calorie maintenance is " << menBMR << endl;
-        cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
+        cout << "If you want to gain weight slowly and steadily, aim for 300â€“500 calories more than you burn each day. If you want to gain weight fast, aim for around 700â€“1,000 calories above your maintenance level." << endl;
 
         cout << "Here is the recommended meal." << endl;
         srand(time(0)); // Seed the random number generator with current time
@@ -315,7 +317,7 @@ void buffMeUp(float weight, float height, int age, char sex){
         int gainweight = menBMR + 400;
 
         cout << "Your recommended calorie maintenance is " << gainweight << endl;
-        cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
+        cout << "If you want to gain weight slowly and steadily, aim for 300â€“500 calories more than you burn each day. If you want to gain weight fast, aim for around 700â€“1,000 calories above your maintenance level." << endl;
 
         cout << "Here is the recommended meal." << endl;
         srand(time(0)); // Seed the random number generator with current time
@@ -337,19 +339,25 @@ void buffMeUp(float weight, float height, int age, char sex){
             meals dinner = set[dinnerIndex];
 
             // Calculate the total calorie count
-            totalCalorie = breakfast.calr;
-
-            if (lunch.calr <= 350) {
+            meal += "Breakfast: " + breakfast.name + "\n";
+            totalCalorie += breakfast.calr;
+            if (lunch.calr <= 700 && lunch.calr >= 400) {
                 meal += "Lunch: 2 servings of " + lunch.name + "\n";
                 totalCalorie += 2 * lunch.calr;
+            } else if (lunch.calr <= 399) {
+                meal += "Lunch: 3 servings of " + lunch.name + "\n";
+                totalCalorie += 3 * lunch.calr;
             } else {
                 meal += "Lunch: " + lunch.name + "\n";
                 totalCalorie += lunch.calr;
             }
 
-            if (dinner.calr <= 350) {
+            if (dinner.calr <= 700 && dinner.calr >= 400) {
                 meal += "Dinner: 2 servings of " + dinner.name + "\n";
                 totalCalorie += 2 * dinner.calr;
+            } else if (dinner.calr <= 399) {
+                meal += "Dinner: 3 servings of " + dinner.name + "\n";
+                totalCalorie += 3 * dinner.calr;
             } else {
                 meal += "Dinner: " + dinner.name + "\n";
                 totalCalorie += dinner.calr;
@@ -371,7 +379,7 @@ void buffMeUp(float weight, float height, int age, char sex){
         int gainweight = menBMR + 400;
 
         cout << "Your recommended calorie maintenance is " << gainweight << endl;
-        cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
+        cout << "If you want to gain weight slowly and steadily, aim for 300â€“500 calories more than you burn each day. If you want to gain weight fast, aim for around 700â€“1,000 calories above your maintenance level." << endl;
 
         cout << "Here is the recommended meal." << endl;
         srand(time(0)); // Seed the random number generator with current time
@@ -393,19 +401,25 @@ void buffMeUp(float weight, float height, int age, char sex){
             meals dinner = set[dinnerIndex];
 
             // Calculate the total calorie count
-            totalCalorie = breakfast.calr;
-
-            if (lunch.calr <= 350) {
+            meal += "Breakfast: " + breakfast.name + "\n";
+            totalCalorie += breakfast.calr;
+            if (lunch.calr <= 700 && lunch.calr >= 400) {
                 meal += "Lunch: 2 servings of " + lunch.name + "\n";
                 totalCalorie += 2 * lunch.calr;
+            } else if (lunch.calr <= 399) {
+                meal += "Lunch: 3 servings of " + lunch.name + "\n";
+                totalCalorie += 3 * lunch.calr;
             } else {
                 meal += "Lunch: " + lunch.name + "\n";
                 totalCalorie += lunch.calr;
             }
 
-            if (dinner.calr <= 350) {
+            if (dinner.calr <= 700 && dinner.calr >= 400) {
                 meal += "Dinner: 2 servings of " + dinner.name + "\n";
                 totalCalorie += 2 * dinner.calr;
+            } else if (dinner.calr <= 399) {
+                meal += "Dinner: 3 servings of " + dinner.name + "\n";
+                totalCalorie += 3 * dinner.calr;
             } else {
                 meal += "Dinner: " + dinner.name + "\n";
                 totalCalorie += dinner.calr;
@@ -432,8 +446,8 @@ void weightgain(float weight, float height, int age, char sex) {
         int menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
         int gainweight = menBMR + 400;
 
-        cout << "Your recommended calorie maintenance is " << menBMR << endl;
-        cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
+        cout << "Your recommended calorie maintenance is " << gainweight << endl;
+        cout << "If you want to gain weight slowly and steadily, aim for 300â€“500 calories more than you burn each day. If you want to gain weight fast, aim for around 700â€“1,000 calories above your maintenance level." << endl;
 
         cout << "Here is the recommended meal." << endl;
         srand(time(0)); // Seed the random number generator with current time
@@ -455,19 +469,25 @@ void weightgain(float weight, float height, int age, char sex) {
             meals dinner = set[dinnerIndex];
 
             // Calculate the total calorie count
-            totalCalorie = breakfast.calr;
-
-            if (lunch.calr <= 350) {
+            meal += "Breakfast: " + breakfast.name + "\n";
+            totalCalorie += breakfast.calr;
+           if (lunch.calr <= 700 && lunch.calr >= 400) {
                 meal += "Lunch: 2 servings of " + lunch.name + "\n";
                 totalCalorie += 2 * lunch.calr;
+            } else if (lunch.calr <= 399) {
+                meal += "Lunch: 3 servings of " + lunch.name + "\n";
+                totalCalorie += 3 * lunch.calr;
             } else {
                 meal += "Lunch: " + lunch.name + "\n";
                 totalCalorie += lunch.calr;
             }
 
-            if (dinner.calr <= 350) {
+            if (dinner.calr <= 700 && dinner.calr >= 400) {
                 meal += "Dinner: 2 servings of " + dinner.name + "\n";
                 totalCalorie += 2 * dinner.calr;
+            } else if (dinner.calr <= 399) {
+                meal += "Dinner: 3 servings of " + dinner.name + "\n";
+                totalCalorie += 3 * dinner.calr;
             } else {
                 meal += "Dinner: " + dinner.name + "\n";
                 totalCalorie += dinner.calr;
@@ -488,8 +508,8 @@ void weightgain(float weight, float height, int age, char sex) {
         menBMR = 448 + (9 * weight) + (3 * height) - (4 * age);
         int gainweight = menBMR + 400;
 
-        cout << "Your recommended calorie maintenance is " << menBMR << endl;
-        cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
+        cout << "Your recommended calorie maintenance is " << gainweight << endl;
+        cout << "If you want to gain weight slowly and steadily, aim for 300â€“500 calories more than you burn each day. If you want to gain weight fast, aim for around 700â€“1,000 calories above your maintenance level." << endl;
 
         cout << "Here is the recommended meal." << endl;
         srand(time(0)); // Seed the random number generator with current time
@@ -511,19 +531,26 @@ void weightgain(float weight, float height, int age, char sex) {
             meals dinner = set[dinnerIndex];
 
             // Calculate the total calorie count
-            totalCalorie = breakfast.calr;
 
-            if (lunch.calr <= 350) {
+            meal += "Breakfast: " + breakfast.name + "\n";
+            totalCalorie += breakfast.calr;
+            if (lunch.calr <= 700 && lunch.calr >= 400) {
                 meal += "Lunch: 2 servings of " + lunch.name + "\n";
                 totalCalorie += 2 * lunch.calr;
+            } else if (lunch.calr <= 399) {
+                meal += "Lunch: 3 servings of " + lunch.name + "\n";
+                totalCalorie += 3 * lunch.calr;
             } else {
                 meal += "Lunch: " + lunch.name + "\n";
                 totalCalorie += lunch.calr;
             }
 
-            if (dinner.calr <= 350) {
+            if (dinner.calr <= 700 && dinner.calr >= 400) {
                 meal += "Dinner: 2 servings of " + dinner.name + "\n";
                 totalCalorie += 2 * dinner.calr;
+            } else if (dinner.calr <= 399) {
+                meal += "Dinner: 3 servings of " + dinner.name + "\n";
+                totalCalorie += 3 * dinner.calr;
             } else {
                 meal += "Dinner: " + dinner.name + "\n";
                 totalCalorie += dinner.calr;
@@ -620,116 +647,132 @@ void bmi(float h, float w, string units) {
     cout << "Your BMI is: " << result << endl;
 
     if (result < 18.5) {
-        bmiResult = "Underweight";
+        bmiResult = "underweight";
         underweight();
     } else if (result >= 18.5 && result <= 24.9) {
-        bmiResult = "Normal Weight";
+        bmiResult = "normal";
         normalweight();
     } else if (result >= 25 && result <= 30) {
-        bmiResult = "Overweight";
+        bmiResult = "overweight";
         overweight();
     } else {
-        bmiResult = "Obese";
+        cout << "Facts about obese" << endl;
+        bmiResult = "OBESE";
         obese();
     }
 }
-
-
 
 int main() {
     int choice, choice1;
     string searchMeal;
     string name, units;
     int age;
-    char sex;
+    char sex, choice2;
     float weight, height;
+    bool isTrue1;
 
     cout << "Enter your Name: ";
     getline(cin,name);
     cout << "Enter your age: ";
-    while(true)
-    {
-    cin>>age;
+    while(true){
+        cin>>age;
+        if(cin.fail()){
+            cout<<"Please enter your real age: ";
+            cin.clear();
+            cin.ignore(100,'\n');
+        }else{
+            break;
+            }
+    }
 
-    if(cin.fail())
-    {
-    cout<<"Please enter your real age: ";
-    cin.clear();
-    cin.ignore(100,'\n');
-    }
-    else
-    {
-        break;
-    }
-}
-do{
-    cout << "Enter your sex [M/F]: ";
-    cin>>sex;
-    cin.ignore(100,'\n');
-}
-while (sex!='M'&&sex!='m'&&sex!='f'&&sex!='F');
+    do{
+        cout << "Enter your sex [M/F]: ";
+        cin>>sex;
+        cin.ignore(100,'\n');
+    }while (sex!='M'&&sex!='m'&&sex!='f'&&sex!='F');
+
     cout << "Enter your Height: ";
     while (true){
-    cin >> height;
-    if(cin.fail())
-    {
-        cout<<"Please enter your Height: ";
-        cin.clear();
-        cin.ignore(100,'\n');
-    }
-    else
-    {
-        break;
-    }
-    }
+        cin >> height;
+        if(cin.fail()){
+            cout<<"Please enter your Height: ";
+            cin.clear();
+            cin.ignore(100,'\n');
+        }else{
+            break;
+        }
+        }
 
-    cout << "Enter the unit of height [cm/m]: ";
-    cin >> units;
-    cout << "Enter your Weight in KG: ";
-    while(true)
-    {
-    cin >> weight;
-
-    if (cin.fail())
-    {
-        cout<<"Please enter your weight in KG: ";
-        cin.clear();
-        cin.ignore(100,'\n');
-    }
-        else
-    {
-        break;
-    }
-    }
+        cout << "Enter the unit of height [cm/m]: ";
+        cin >> units;
+        cout << "Enter your Weight in KG: ";
+        while(true){
+            cin >> weight;
+            if (cin.fail()){
+                cout<<"Please enter your weight in KG: ";
+                cin.clear();
+                cin.ignore(100,'\n');
+            }else{
+                break;
+            }
+        }
 
 
     Info user(name, age, sex, weight, height, units, "");
     bmi(user.height, user.weight, user.units);
 
-    cout << endl << endl;
-    cout << "========================================================================" << endl;
-    cout << "\t[1] Weight Loss" << endl;
-    cout << "\t[2] Gain Muscles" << endl;
-    cout << "\t[3] Gain Weight" << endl;
-    cout << "Your Choice: ";
-    cin >> choice;
+     do {
+        cout << "========================================================================" << endl;
+        cout << "\t[1] Weight Loss" << endl;
+        cout << "\t[2] Gain Muscles" << endl;
+        cout << "\t[3] Gain Weight" << endl;
+        cout << "Your Choice: ";
+        cin >> choice;
 
-    // Call predefmeals() to initialize the set array with meals
-    predefmeals();
+        // Call predefmeals() to initialize the set array with meals
+        predefmeals();
+        if (choice == 1) {
+            weightloss(user.weight, user.height, user.age, user.sex);
+        } else if (choice == 2) {
+            buffMeUp(user.weight, user.height, user.age, user.sex);
+        } else if (choice == 3) {
+            weightgain(user.weight, user.height, user.age, user.sex);
+        }
+        cout << "\n\tDo you want to generate meals again? [Y/N]: ";
+        cin >> choice2;
+        if(choice2 == 'N' || choice2 == 'n'){
+            continue;
+        }
+        system("cls");
 
-    if (choice == 1) {
-        weightloss(user.weight, user.height, user.age, user.sex);
-    } else if (choice == 2) {
-        buffMeUp(user.weight, user.height, user.age, user.sex);
-    } else if (choice == 3) {
-        weightgain(user.weight, user.height, user.age, user.sex);
-    }
+    } while (choice2 == 'Y' || choice2 == 'y');
 
-    LinkedList myList;
-    mealList(myList);
+    do {
+        LinkedList myList;
+        // Call mealList(myList) function to populate the linked list with meals
+        mealList(myList);
 
-    if (choice == 1) {
-        cout << endl << endl;
+        system("cls");
+        int maxBreakfastWidth = 0;
+        int maxLunchWidth = 0;
+        int maxDinnerWidth = 0;
+
+        for (int i = 0; i < 25; i++) {
+            maxBreakfastWidth = max(maxBreakfastWidth, static_cast<int>(set[i].name.length()));
+            maxLunchWidth = max(maxLunchWidth, static_cast<int>(set[i + 25].name.length()));
+            maxDinnerWidth = max(maxDinnerWidth, static_cast<int>(set[i + 50].name.length()));
+        }
+
+        // Display breakfast, lunch, and dinner in aligned columns
+        cout << "Breakfast" << string(maxBreakfastWidth - 8, ' ') << "\tLunch" << string(maxLunchWidth - 5, ' ') << "\t\tDinner\n";
+        cout << "----------------------------------------------------------------------------------------------------------------\n";
+
+        for (int i = 0; i < 25; i++) {
+            cout << set[i].name << string(maxBreakfastWidth - set[i].name.length(), ' ');
+            cout << "\t" << set[i + 25].name << string(maxLunchWidth - set[i + 25].name.length(), ' ');
+            cout << "\t" << set[i + 50].name << '\n';
+        }
+
         cout << "========================================================================" << endl;
         cout << "Enter a meal to search: ";
 
@@ -755,5 +798,13 @@ while (sex!='M'&&sex!='m'&&sex!='f'&&sex!='F');
         } else {
             cout << "Meal not found." << endl;
         }
-        return 0;
-}}
+
+    cout << "\n\tDo you want to search recipe again? [Y/N]: ";
+    cin >> choice2;
+    if(choice2 == 'N' || choice2 == 'n'){
+        continue;
+    }
+    } while (choice2 == 'Y' || choice2 == 'y');
+
+    return 0;
+}
