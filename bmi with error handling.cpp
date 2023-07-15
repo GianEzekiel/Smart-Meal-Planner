@@ -1,5 +1,6 @@
 #include <ctime>
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <string>
 #include <cstdlib>
@@ -7,6 +8,7 @@
 #include <limits>
 #include <algorithm>
 #include <vector>
+#include <thread>
 
 using namespace std;
 
@@ -662,6 +664,24 @@ void bmi(float h, float w, string units) {
     }
 }
 
+void print_loading_bar(int n) {
+    for (int i = 0; i < n; i++) {
+        cout << "=";
+    }
+    for (int i = n; i < 50; i++) {
+        cout << " ";
+    }
+    cout << " " << n * 2 << "%\r";
+    cout.flush();
+}
+
+void print_header(string text) {
+  system("CLS");
+  cout << string(40, '=') << endl;
+  cout << setw(31) << text << endl;
+  cout << string(40, '=') << endl;
+}
+
 int main() {
     int choice, choice1;
     string searchMeal;
@@ -670,6 +690,15 @@ int main() {
     char sex, choice2;
     float weight, height;
     bool isTrue1;
+
+    cout << "Meal Planner\n\n";
+    cout << "Loading...\n";
+    for (int i = 0; i <= 50; i++) {
+        print_loading_bar(i);
+        // wait for 100 milliseconds
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
+    print_header("Meal Planner");
 
     cout << "Enter your Name: ";
     getline(cin,name);
