@@ -18,6 +18,24 @@ string bmiResult;
 float menBMR;
 float womenBMR;
 
+void print_loading_bar(int n) {
+    for (int i = 0; i < n; i++) {
+        cout << "=";
+    }
+    for (int i = n; i < 50; i++) {
+        cout << " ";
+    }
+    cout << " " << n * 2 << "%\r";
+    cout.flush();
+}
+
+void print_header(string text) {
+  system("CLS");
+  cout << string(60, '=') << endl;
+  cout << setw(37) << text << endl;
+  cout << string(60, '=') << endl;
+}
+
 struct Node {
     string name;
     string data;
@@ -219,15 +237,17 @@ public:
 };
 
 void weightloss(float weight, float height, int age, char sex) {
-    cout << "Here is the function for weight loss." << endl;
+    cout << "\nHere is the function for weight loss." << endl;
     if (sex == 'M' || sex == 'm') {
         menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
         int gainweight = menBMR - 400;
 
-        cout << "Your recommended calorie maintenance is " << menBMR << endl;
+        cout << "\nYour recommended calorie maintenance is " << menBMR << endl;
         cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
-
-        cout << "Here is the recommended meal." << endl;
+		cout<<endl;
+		system("pause");
+		print_header("Weight Loss");
+        cout << "\nHere are the recommended meals.\n" << endl;
         srand(time(0)); // Seed the random number generator with current time
 
         queue<string> recommendedMeals; // Queue to store the recommended meals
@@ -269,10 +289,10 @@ void weightloss(float weight, float height, int age, char sex) {
         menBMR = 448 + (9 * weight) + (3 * height) - (4 * age);
         int gainweight = menBMR - 400;
 
-        cout << "Your recommended calorie maintenance is " << menBMR << endl;
+        cout << "\nYour recommended calorie maintenance is " << menBMR << endl;
         cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
 
-        cout << "Here is the recommended meal." << endl;
+        cout << "\nHere are the recommended meals.\n" << endl;
         srand(time(0)); // Seed the random number generator with current time
 
         queue<string> recommendedMeals; // Queue to store the recommended meals
@@ -314,15 +334,17 @@ void weightloss(float weight, float height, int age, char sex) {
 }
 
 void buffMeUp(float weight, float height, int age, char sex){
-    cout << "Here is the function for gaining muscles." << endl;
+    cout << "\nHere is the function for gaining muscles." << endl;
      if (sex == 'M' || sex == 'm') {
         int menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
         int gainweight = menBMR + 400;
 
-        cout << "Your recommended calorie maintenance is " << gainweight << endl;
+        cout << "\nYour recommended calorie maintenance is " << gainweight << endl;
         cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
-
-        cout << "Here is the recommended meal." << endl;
+		cout<<endl;
+		system("pause");
+		print_header("Gain Muscle");
+        cout << "\nHere are the recommended meals.\n" << endl;
         srand(time(0)); // Seed the random number generator with current time
 
         queue<string> recommendedMeals; // Queue to store the recommended meals
@@ -381,10 +403,10 @@ void buffMeUp(float weight, float height, int age, char sex){
         menBMR = 448 + (9 * weight) + (3 * height) - (4 * age);
         int gainweight = menBMR + 400;
 
-        cout << "Your recommended calorie maintenance is " << gainweight << endl;
+        cout << "\nYour recommended calorie maintenance is " << gainweight << endl;
         cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
 
-        cout << "Here is the recommended meal." << endl;
+        cout << "\nHere are the recommended meals.\n" << endl;
         srand(time(0)); // Seed the random number generator with current time
 
         queue<string> recommendedMeals; // Queue to store the recommended meals
@@ -444,15 +466,17 @@ void buffMeUp(float weight, float height, int age, char sex){
 }
 
 void weightgain(float weight, float height, int age, char sex) {
-    cout << "Here is the function for gaining muscles." << endl;
+    cout << "\nHere is the function for gaining muscles." << endl;
      if (sex == 'M' || sex == 'm') {
         int menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
         int gainweight = menBMR + 400;
 
-        cout << "Your recommended calorie maintenance is " << gainweight << endl;
+        cout << "\nYour recommended calorie maintenance is " << gainweight << endl;
         cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
-
-        cout << "Here is the recommended meal." << endl;
+		cout<<endl;
+		system("pause");
+		print_header("Weight Gain");
+        cout << "\nHere are the recommended meals.\n" << endl;
         srand(time(0)); // Seed the random number generator with current time
 
         queue<string> recommendedMeals; // Queue to store the recommended meals
@@ -511,10 +535,10 @@ void weightgain(float weight, float height, int age, char sex) {
         menBMR = 448 + (9 * weight) + (3 * height) - (4 * age);
         int gainweight = menBMR + 400;
 
-        cout << "Your recommended calorie maintenance is " << gainweight << endl;
+        cout << "\nYour recommended calorie maintenance is " << gainweight << endl;
         cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
-
-        cout << "Here is the recommended meal." << endl;
+		system("pause");
+        cout << "\nHere are the recommended meals.\n" << endl;
         srand(time(0)); // Seed the random number generator with current time
 
         queue<string> recommendedMeals; // Queue to store the recommended meals
@@ -669,24 +693,6 @@ void bmi(float h, float w, string units) {
     }
 }
 
-void print_loading_bar(int n) {
-    for (int i = 0; i < n; i++) {
-        cout << "=";
-    }
-    for (int i = n; i < 50; i++) {
-        cout << " ";
-    }
-    cout << " " << n * 2 << "%\r";
-    cout.flush();
-}
-
-void print_header(string text) {
-  system("CLS");
-  cout << string(60, '=') << endl;
-  cout << setw(37) << text << endl;
-  cout << string(60, '=') << endl;
-}
-
 void print_logo(){
 	    cout << "                                             .*=.                                       \n"
             "                                            +#==*                                       \n"
@@ -715,6 +721,77 @@ void print_logo(){
             "                .   +**  *%%%%%%%%%%%%%%%%%%%***     *###*-                             \n"
             "                   =***                                                                 \n"
             "                    *+                                         ";
+}
+
+void print_bulkup(){
+	    cout << "\n         ####            #####           :####              \n"
+				"     ##=++=#+           #     .=         #++++#+##          \n"
+				"    #=#==+=#*           -      #         #+++=#=++*         \n"
+				"   ##=#==++#*    #*#    .#  .#+    #+#   #++++#=+=*+        \n"
+				"   ##=#==+=#*  ##   ###=.+###::+###   #  #++=+#=++*+        \n"
+				"    #=#==+=#+  #  ##  =.........-  ## .= #++++#=*=*         \n"
+				"     ###=+=#+  #.     #.........#     =  #+++=#=#*          \n"
+				"           ##   #*-## #.........#.##*##   #                 \n"
+				"                       #.......#                            \n"
+				"                       #.......#                            \n"
+				"                      #---------#                           \n"
+				"                      #----#----#                           \n"
+				"                      #  .# #   #                           \n"
+				"                      #   # #.  %                           \n"
+				"                      #  #   #  #                           \n"
+				"                      #  #   #  #                           \n"
+				"                      # #     # #                           \n"
+				"                    #-*-#     +-*=-                         \n"
+				"                   %%######%###%####						 \n";
+}
+
+void print_wloss(){
+	    cout <<"\n                           @.                       @.            \n"              
+				"                   +-      *+                      -#      :*                   \n"
+				"             .+++++%##-    -#                      *=    :##@+++++:             \n"
+				"             .@       =#-  :@                      #-  -#+.      %-             \n"
+				"             .@       :#+. =#                      ++  +%-       %-             \n"
+				"             .%****#+#*.   %:                      .@.   +#+#****#-             \n"
+				"                   **.    **           +*           =%     +#                   \n"
+				"                        *%.                          .#*                        \n"
+				"                       #+-+***+=-::.        ..:-=+***+-+%.                      \n"
+				"                      *+       .:-==++****++==-:.       +#                      \n"
+				"                    .@:                                  .@:                    \n"
+				"                    *#==-:.                          .:--=*%                    \n"
+				"                    @-.::-=++*+-                -+*++=-::..@.                   \n"
+				"                    @.         -*#=.         -**-.         @:                   \n"
+				"                    @.              :#+  =%-               @:                   \n"
+				"                    @:                =##+                 @.                   \n"
+				"                    =%                 +*                 *+                    \n"
+				"                     +*                +*                =#;\n";
+}
+
+void print_wgain(){
+	    cout <<"\n    =%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#-               \n"
+				"   #@%-                                                       -%@*              \n"
+				"  -@@.                     .-+*%%@@@%#*+-.                     -@@:             \n"
+				"  -@@.                  :+%@@%*+=--==+*%@@%+.                  :@@-             \n"
+				"  -@@.                -%@@*-             -*@@#:                :@@-             \n"
+				"  -@@.              .#@@=           :+****= +@@*               :@@-             \n"
+				"  -@@.             .@@#.       .:::.:*@@@@@  .%@%              :@@-             \n"
+				"  -@@.             %@#      -*@@@@@@@@@%+@@:   %@#             :@@-             \n"
+				"  -@@.            =@@.    :%@%=.  -%@%@@*=-    :@@-            :@@-             \n"
+				"  -@@.            =@@#####@@@####%@@@#%@@%######@@:            :@@-             \n"
+				"  -@@.             :=+++++++++++++++++++++++++++=.             :@@-             \n"
+				"  -@@.                                                         :@@-             \n"
+				"  -@@.                                                         :@@-             \n"
+				"  -@@.                                                         :@@-             \n"
+				"  -@@.                                                         :@@-             \n"
+				"  -@@.                                                       .:=@@=.            \n"
+				"  -@@.                                                   -*%@@@@%@@@@%+-        \n"
+				"  -@@.                                                 +@@%+:.     .-+%@@=      \n"
+				"  -@@.                                               -@@=        %@+    +@@   \n"
+				"  -@@.                                              +@@=       %@+       +@@:   \n"
+				"   %@#.                                            #@%    @@#@@#@@#@@#@    @@=  \n"
+				"      :=+++++++++++++++++++++++++++++++++++++++++++#@@.        %@*        :@@:  \n"
+				"                                                    :@@#.      =#-      :%@#    \n"
+				"                                                       .+%@@#+==-==*#@@%=       \n"
+				"                                                          .-+*#%%%#*+-.         \n";
 }
 
 int main() {
@@ -787,13 +864,14 @@ int main() {
     Info user(name, age, sex, weight, height, units, "");
     bmi(user.height, user.weight, user.units);
     system("pause");
+    for (int i = 0; i <= 50; i++) {
+        print_loading_bar(i);
+        this_thread::sleep_for(chrono::milliseconds(50));
+    }
     
      do {
-     	print_header("Smart Meal Planner");
-     	cout << "\nLoading...\n";
     	for (int i = 0; i <= 50; i++) {
-        	print_loading_bar(i);
-        	this_thread::sleep_for(chrono::milliseconds(100));
+        	this_thread::sleep_for(chrono::milliseconds(50));
     	}
 		print_header("Smart Meal Planner");
 		cout<<"\nYou are currently "<<bmiResult<<"."<<endl;
@@ -806,10 +884,34 @@ int main() {
         // Call predefmeals() to initialize the set array with meals
         predefmeals();
         if (choice == 1) {
+        	print_header("Weight Loss");
+        	print_wloss();
+     		cout << "\nLoading...\n";
+    		for (int i = 0; i <= 50; i++) {
+        		print_loading_bar(i);
+        	this_thread::sleep_for(chrono::milliseconds(25));
+    		}
+    		print_header("Weight Loss");
             weightloss(user.weight, user.height, user.age, user.sex);
         } else if (choice == 2) {
+        	print_header("Gain Muscles");
+        	print_bulkup();
+     		cout << "\nLoading...\n";
+    		for (int i = 0; i <= 50; i++) {
+        		print_loading_bar(i);
+        	this_thread::sleep_for(chrono::milliseconds(25));
+    		}
+    		print_header("Gain Muscles");
             buffMeUp(user.weight, user.height, user.age, user.sex);
         } else if (choice == 3) {
+        	print_header("Weight Gain");
+        	print_wgain();
+     		cout << "\nLoading...\n";
+    		for (int i = 0; i <= 50; i++) {
+        		print_loading_bar(i);
+        	this_thread::sleep_for(chrono::milliseconds(25));
+    		}
+    		print_header("Weight Gain");
             weightgain(user.weight, user.height, user.age, user.sex);
         }
         cout << "\n\tDo you want to generate meals again? [Y/N]: ";
@@ -822,6 +924,7 @@ int main() {
     } while (choice2 == 'Y' || choice2 == 'y');
 
     do {
+    	print_header("Meals List");
         LinkedList myList;
         // Call mealList(myList) function to populate the linked list with meals
         mealList(myList);
