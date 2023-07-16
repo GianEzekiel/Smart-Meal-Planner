@@ -809,14 +809,14 @@ int main() {
     cout << "\nLoading...\n";
     for (int i = 0; i <= 50; i++) {
         print_loading_bar(i);
-        this_thread::sleep_for(chrono::milliseconds(100));
+        this_thread::sleep_for(chrono::milliseconds(60));
     }
 
     print_header("Smart Meal Planner");
     cout<<"\nWelcome to Smart Meal Planner!"<<endl;
-    Sleep (3000);
+    Sleep (1000);
     cout<<"Enter your credentials to create a profile..."<<endl<<endl;
-    Sleep (2000);
+    Sleep (800);
     cout << "Enter your Name: ";
     getline(cin,name);
     cout << "Enter your age: ";
@@ -837,20 +837,21 @@ int main() {
         cin.ignore(100,'\n');
     }while (sex!='M'&&sex!='m'&&sex!='f'&&sex!='F');
 
-    cout << "Enter your Height: ";
+    cout << "Enter your Height in cm or m: ";
     while (true){
         cin >> height;
         if(cin.fail()){
-            cout<<"Please enter your Height: ";
+            cout<<"Please enter your Height in cm or m: ";
             cin.clear();
             cin.ignore(100,'\n');
         }else{
             break;
         }
     }
-
+do{
     cout << "Enter the unit of height [cm/m]: ";
     cin >> units;
+}while(units!="cm"&&units!="m");
     cout << "Enter your Weight in KG: ";
     while(true){
         cin >> weight;
@@ -889,9 +890,9 @@ int main() {
         while(true){
             cin>>userChoice;
             if(cin.fail()){
-                cout<<"Please enter your real age: ";
+                cout<<"Please enter a correct choice: ";
                 cin.clear();
-                cin.ignore(5,'\n');
+                cin.ignore(100,'\n');
             }else{
                 break;
             }
@@ -994,12 +995,17 @@ int main() {
                     } else {
                         cout << "Meal not found." << endl;
                     }
-
+                    do
+                    {
                     cout << "\n\tDo you want to search recipe again? [Y/N]: ";
                     cin >> choice2;
-                    if(choice2 == 'N' || choice2 == 'n'){
+                    cin.ignore(100,'\n');
+                    if(choice2 == 'N' || choice2 == 'n')
+                        {
                         continue;
                     }
+                    }while(choice2!='N'&&choice2!='n'&&choice2!='Y'&&choice2!='y');
+
                 } while (choice2 == 'Y' || choice2 == 'y');
                 break;
             case 3:
