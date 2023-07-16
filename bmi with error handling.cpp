@@ -880,10 +880,11 @@ int main() {
         system("cls");
         print_header("Smart Meal Planner");
         bmi(user.height, user.weight, user.units);
-        cout << "\n==========================================="<< endl;
+        cout << "\n==============================================================="<< endl;
         cout << "\n\t[1] Generate Meal Plan" << endl;
         cout << "\t[2] Search Meal" << endl;
         cout << "\t[3] View Profile" << endl;
+        cout << "\t[4] Exit" << endl;
         cout << "Your Choice: ";
         while(true){
             cin>>userChoice;
@@ -895,6 +896,8 @@ int main() {
                 break;
             }
         }
+
+         predefmeals();
 
         switch(userChoice){
             case 1:
@@ -916,9 +919,6 @@ int main() {
                             break;
                         }
                     }
-
-                    // Call predefmeals() to initialize the set array with meals
-                    predefmeals();
                     switch (choice) {
                         case 1:
                             weightloss(foods, user.weight, user.height, user.age, user.sex);
