@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <vector>
 #include <thread>
+#include <windows.h>
 
 using namespace std;
 
@@ -588,6 +589,7 @@ void underweight() {
         cout << "Being underweight can be influenced by stress, anxiety, depression, and/or eating disorders." << endl;
     else if (x == 4)
         cout << "A main cause of being underweight is malnutrition." << endl;
+    cout<<endl;
 }
 
 void normalweight() {
@@ -595,7 +597,7 @@ void normalweight() {
     srand(time(NULL));
     x = rand() % 4;
     cout << "Normal weight." << endl;
-    cout << "Random Fact: ";
+    cout << "\nRandom Fact: ";
     if (x == 0) {
         cout << "Maintaining a healthy weight can lower the risk of heart disease, stroke, diabetes, high blood pressure, and many different types of cancers." << endl;
     } else if (x == 1) {
@@ -605,6 +607,7 @@ void normalweight() {
     } else if (x == 3) {
         cout << "You are less likely to develop diabetes, heart disease, certain cancers, gallstones, osteoarthritis, breathing problems, and sleep apnea." << endl;
     }
+    cout<<endl;
 }
 
 void overweight() {
@@ -619,6 +622,7 @@ void overweight() {
         cout << "Men are more likely than women to be overweight." << endl;
     else if (x == 2)
         cout << "More than 2 in 3 adults are considered to be overweight or have obesity." << endl;
+    cout<<endl;
 }
 
 void obese() {
@@ -626,7 +630,7 @@ void obese() {
     srand(time(NULL));
     x = rand() % 4;
     cout << "Obese." << endl;
-    cout << "Random Fact: ";
+    cout << "\nRandom Fact: ";
     if (x == 0) {
         cout << "Obesity-related conditions include heart disease, stroke, type 2 diabetes, and certain types of cancer. These are among the leading causes of preventable, premature death." << endl;
     } else if (x == 1) {
@@ -636,6 +640,7 @@ void obese() {
     } else if (x == 3) {
         cout << "39 million children under the age of 5 were overweight or obese in 2020." << endl;
     }
+    cout<<endl;
 }
 
 void bmi(float h, float w, string units) {
@@ -646,7 +651,7 @@ void bmi(float h, float w, string units) {
     }
 
     result = w / (newHeight * newHeight);
-    cout << "Your BMI is: " << result << endl;
+    cout << "\nYour BMI is: " << result << endl;
 
     if (result < 18.5) {
         bmiResult = "underweight";
@@ -677,21 +682,13 @@ void print_loading_bar(int n) {
 
 void print_header(string text) {
   system("CLS");
-  cout << string(40, '=') << endl;
-  cout << setw(35) << text << endl;
-  cout << string(40, '=') << endl;
+  cout << string(60, '=') << endl;
+  cout << setw(37) << text << endl;
+  cout << string(60, '=') << endl;
 }
 
-int main() {
-    int choice, choice1;
-    string searchMeal;
-    string name, units;
-    int age;
-    char sex, choice2;
-    float weight, height;
-    bool isTrue1;
-
-    cout << "                                             .*=.                                       \n"
+void print_logo(){
+	    cout << "                                             .*=.                                       \n"
             "                                            +#==*                                       \n"
             "                            +  =:    :-  = +#==*+                                       \n"
             "             .    --      :+@:.@#.  -@@:%@*#****                                        \n"
@@ -718,14 +715,29 @@ int main() {
             "                .   +**  *%%%%%%%%%%%%%%%%%%%***     *###*-                             \n"
             "                   =***                                                                 \n"
             "                    *+                                         ";
+}
+
+int main() {
+    int choice, choice1;
+    string searchMeal;
+    string name, units;
+    int age;
+    char sex, choice2;
+    float weight, height;
+    bool isTrue1;
+
+	print_logo();
     cout << "Loading...\n";
     for (int i = 0; i <= 50; i++) {
         print_loading_bar(i);
-        // wait for 100 milliseconds
         this_thread::sleep_for(chrono::milliseconds(100));
     }
-    print_header("Welcome to Smart Meal Planner");
-
+    
+    print_header("Smart Meal Planner");
+	cout<<"\nWelcome to Smart Meal Planner!"<<endl;
+	Sleep (3000);
+	cout<<"Enter your credentials to create a profile..."<<endl<<endl;
+	Sleep (2000);
     cout << "Enter your Name: ";
     getline(cin,name);
     cout << "Enter your age: ";
@@ -772,16 +784,23 @@ int main() {
             }
         }
 
-
     Info user(name, age, sex, weight, height, units, "");
     bmi(user.height, user.weight, user.units);
-
+    system("pause");
+    
      do {
-        cout << "========================================================================" << endl;
+     	print_header("Smart Meal Planner");
+     	cout << "\nLoading...\n";
+    	for (int i = 0; i <= 50; i++) {
+        	print_loading_bar(i);
+        	this_thread::sleep_for(chrono::milliseconds(100));
+    	}
+		print_header("Smart Meal Planner");
+		cout<<"\nYou are currently "<<bmiResult<<"."<<endl;
         cout << "\t[1] Weight Loss" << endl;
         cout << "\t[2] Gain Muscles" << endl;
         cout << "\t[3] Gain Weight" << endl;
-        cout << "Your Choice: ";
+        cout << "\nYour Choice: ";
         cin >> choice;
 
         // Call predefmeals() to initialize the set array with meals
