@@ -14,27 +14,10 @@
 using namespace std;
 
 double result;
-string bmiResult;
+string bmiResult, recommendation;
 float menBMR;
 float womenBMR;
-
-void print_loading_bar(int n) {
-    for (int i = 0; i < n; i++) {
-        cout << "=";
-    }
-    for (int i = n; i < 50; i++) {
-        cout << " ";
-    }
-    cout << " " << n * 2 << "%\r";
-    cout.flush();
-}
-
-void print_header(string text) {
-  system("CLS");
-  cout << string(60, '=') << endl;
-  cout << setw(37) << text << endl;
-  cout << string(60, '=') << endl;
-}
+int y = 1;
 
 struct Node {
     string name;
@@ -137,6 +120,11 @@ void mealList(LinkedList& myList) {
 
 }
 
+struct Meal {
+    string umagahan;
+    string tanghalian;
+    string hapunan;
+};
 
 struct meals {
     string name;
@@ -236,18 +224,36 @@ public:
         : name(n), age(a), sex(s), weight(w), height(h), units(u), mass(m) {}
 };
 
-void weightloss(float weight, float height, int age, char sex) {
-    cout << "\nHere is the function for weight loss." << endl;
+void loadingAnimation() {
+    int counter = 0;
+    string animation = "|/-\\";
+
+    while (counter < 10) {
+        cout << "Generating meals.. " << animation[counter % animation.length()] << " ";
+        cout.flush();
+
+        this_thread::sleep_for(chrono::milliseconds(200));
+
+        cout << "\r";  // Move the cursor back to the beginning of the line
+        counter++;
+    }
+
+    cout << "Loading complete!" << endl;
+}
+
+void weightloss(Meal* foods, float weight, float height, int age, char sex) {
+    int i = 0;
     if (sex == 'M' || sex == 'm') {
         menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
         int gainweight = menBMR - 400;
 
         cout << "\nYour recommended calorie maintenance is " << menBMR << endl;
-        cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
-		cout<<endl;
-		system("pause");
-		print_header("Weight Loss");
-        cout << "\nHere are the recommended meals.\n" << endl;
+        cout << "If you want to gain weight slowly and steadily, you need to decrease your calorie maintenance to 300 and above." << endl;
+        cout << "Therefore, your new calorie maintenance is " << gainweight << endl << endl;
+
+        loadingAnimation();
+
+        cout << "Here is the recommended meal." << endl;
         srand(time(0)); // Seed the random number generator with current time
 
         queue<string> recommendedMeals; // Queue to store the recommended meals
@@ -274,8 +280,12 @@ void weightloss(float weight, float height, int age, char sex) {
                 meal += "Lunch: " + lunch.name + "\n";
                 meal += "Dinner: " + dinner.name + "\n";
                 meal += "Total Calorie = " + to_string(totalCalorie) + "\n";
+                foods[i].umagahan = breakfast.name;
+                foods[i].tanghalian = lunch.name;
+                foods[i].hapunan = dinner.name;
                 recommendedMeals.push(meal);
             }
+            i++;
         }
 
         // Print the recommended meals from the queue
@@ -290,9 +300,12 @@ void weightloss(float weight, float height, int age, char sex) {
         int gainweight = menBMR - 400;
 
         cout << "\nYour recommended calorie maintenance is " << menBMR << endl;
-        cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
+        cout << "If you want to gain weight slowly and steadily, you need to decrease your calorie maintenance to 300 and above." << endl;
+        cout << "Therefore, your new calorie maintenance is " << gainweight << endl << endl;
 
-        cout << "\nHere are the recommended meals.\n" << endl;
+        loadingAnimation();
+
+        cout << "Here is the recommended meal." << endl;
         srand(time(0)); // Seed the random number generator with current time
 
         queue<string> recommendedMeals; // Queue to store the recommended meals
@@ -319,8 +332,12 @@ void weightloss(float weight, float height, int age, char sex) {
                 meal += "Lunch: " + lunch.name + "\n";
                 meal += "Dinner: " + dinner.name + "\n";
                 meal += "Total Calorie = " + to_string(totalCalorie) + "\n";
+                foods[i].umagahan = breakfast.name;
+                foods[i].tanghalian = lunch.name;
+                foods[i].hapunan = dinner.name;
                 recommendedMeals.push(meal);
             }
+            i++;
         }
 
         // Print the recommended meals from the queue
@@ -333,24 +350,24 @@ void weightloss(float weight, float height, int age, char sex) {
     }
 }
 
-void buffMeUp(float weight, float height, int age, char sex){
-    cout << "\nHere is the function for gaining muscles." << endl;
+void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
+    int i = 0;
      if (sex == 'M' || sex == 'm') {
         int menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
-        int gainweight = menBMR + 400;
+        int buffed = 1.5 * weight;
 
-        cout << "\nYour recommended calorie maintenance is " << gainweight << endl;
-        cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
-		cout<<endl;
-		system("pause");
-		print_header("Gain Muscle");
-        cout << "\nHere are the recommended meals.\n" << endl;
+        cout << "\nYour recommended calorie maintenance is " << menBMR << endl;
+        cout << "In order to gain muscle, you need to take around " << buffed << " daily."<< endl << endl;
+
+        loadingAnimation();
+
+        cout << "Here is the recommended meal." << endl;
         srand(time(0)); // Seed the random number generator with current time
 
         queue<string> recommendedMeals; // Queue to store the recommended meals
 
         while (recommendedMeals.size() < 7) {
-            int totalCalorie = 0;
+            int totalProtein = 0;
             string meal; // Declare the meal variable
 
             // Generate random indices for breakfast, lunch, and dinner
@@ -365,31 +382,29 @@ void buffMeUp(float weight, float height, int age, char sex){
 
             // Calculate the total calorie count
             meal += "Breakfast: " + breakfast.name + "\n";
-            totalCalorie += breakfast.calr;
-            if (lunch.calr <= 700 && lunch.calr >= 400) {
+            totalProtein += breakfast.protn;
+            if (lunch.protn <= 30) {
                 meal += "Lunch: 2 servings of " + lunch.name + "\n";
-                totalCalorie += 2 * lunch.calr;
-            } else if (lunch.calr <= 399) {
-                meal += "Lunch: 3 servings of " + lunch.name + "\n";
-                totalCalorie += 3 * lunch.calr;
+                totalProtein += 2 * lunch.protn;
             } else {
                 meal += "Lunch: " + lunch.name + "\n";
-                totalCalorie += lunch.calr;
+                totalProtein += lunch.protn;
             }
 
-            if (dinner.calr <= 700 && dinner.calr >= 400) {
+            if (dinner.protn <= 30) {
                 meal += "Dinner: 2 servings of " + dinner.name + "\n";
-                totalCalorie += 2 * dinner.calr;
-            } else if (dinner.calr <= 399) {
-                meal += "Dinner: 3 servings of " + dinner.name + "\n";
-                totalCalorie += 3 * dinner.calr;
+                totalProtein += 2 * dinner.protn;
             } else {
                 meal += "Dinner: " + dinner.name + "\n";
-                totalCalorie += dinner.calr;
+                totalProtein += dinner.protn;
             }
 
-            meal += "Total Calorie = " + to_string(totalCalorie) + "\n";
+            meal += "Total Calorie = " + to_string(totalProtein) + "\n";
+            foods[i].umagahan = breakfast.name;
+            foods[i].tanghalian = lunch.name;
+            foods[i].hapunan = dinner.name;
             recommendedMeals.push(meal);
+            i++;
         }
 
         // Print the recommended meals from the queue
@@ -399,20 +414,22 @@ void buffMeUp(float weight, float height, int age, char sex){
             recommendedMeals.pop();
             day++;
         }
-    } else if (sex == 'F' || sex == 'f') {
+    }else if (sex == 'F' || sex == 'f') {
         menBMR = 448 + (9 * weight) + (3 * height) - (4 * age);
-        int gainweight = menBMR + 400;
+        int buffed = 1.5 * weight;
 
-        cout << "\nYour recommended calorie maintenance is " << gainweight << endl;
-        cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
+        cout << "\nYour recommended calorie maintenance is " << menBMR << endl;
+        cout << "In order to gain muscle, you need to take around " << buffed << " daily."<< endl << endl;
 
-        cout << "\nHere are the recommended meals.\n" << endl;
+        loadingAnimation();
+
+        cout << "Here is the recommended meal." << endl;
         srand(time(0)); // Seed the random number generator with current time
 
         queue<string> recommendedMeals; // Queue to store the recommended meals
 
         while (recommendedMeals.size() < 7) {
-            int totalCalorie = 0;
+            int totalProtein = 0;
             string meal; // Declare the meal variable
 
             // Generate random indices for breakfast, lunch, and dinner
@@ -427,31 +444,29 @@ void buffMeUp(float weight, float height, int age, char sex){
 
             // Calculate the total calorie count
             meal += "Breakfast: " + breakfast.name + "\n";
-            totalCalorie += breakfast.calr;
-            if (lunch.calr <= 700 && lunch.calr >= 400) {
+            totalProtein += breakfast.protn;
+            if (lunch.protn <= 30) {
                 meal += "Lunch: 2 servings of " + lunch.name + "\n";
-                totalCalorie += 2 * lunch.calr;
-            } else if (lunch.calr <= 399) {
-                meal += "Lunch: 3 servings of " + lunch.name + "\n";
-                totalCalorie += 3 * lunch.calr;
+                totalProtein += 2 * lunch.protn;
             } else {
                 meal += "Lunch: " + lunch.name + "\n";
-                totalCalorie += lunch.calr;
+                totalProtein += lunch.protn;
             }
 
-            if (dinner.calr <= 700 && dinner.calr >= 400) {
+            if (dinner.protn <= 30) {
                 meal += "Dinner: 2 servings of " + dinner.name + "\n";
-                totalCalorie += 2 * dinner.calr;
-            } else if (dinner.calr <= 399) {
-                meal += "Dinner: 3 servings of " + dinner.name + "\n";
-                totalCalorie += 3 * dinner.calr;
+                totalProtein += 2 * dinner.protn;
             } else {
                 meal += "Dinner: " + dinner.name + "\n";
-                totalCalorie += dinner.calr;
+                totalProtein += dinner.protn;
             }
 
-            meal += "Total Calorie = " + to_string(totalCalorie) + "\n";
+            meal += "Total Calorie = " + to_string(totalProtein) + "\n";
+            foods[i].umagahan = breakfast.name;
+            foods[i].tanghalian = lunch.name;
+            foods[i].hapunan = dinner.name;
             recommendedMeals.push(meal);
+            i++;
         }
 
         // Print the recommended meals from the queue
@@ -465,18 +480,19 @@ void buffMeUp(float weight, float height, int age, char sex){
 
 }
 
-void weightgain(float weight, float height, int age, char sex) {
-    cout << "\nHere is the function for gaining muscles." << endl;
+void weightgain(Meal* foods, float weight, float height, int age, char sex) {
+    int i = 0;
      if (sex == 'M' || sex == 'm') {
         int menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
         int gainweight = menBMR + 400;
 
-        cout << "\nYour recommended calorie maintenance is " << gainweight << endl;
-        cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
-		cout<<endl;
-		system("pause");
-		print_header("Weight Gain");
-        cout << "\nHere are the recommended meals.\n" << endl;
+       cout << "\nYour recommended calorie maintenance is " << menBMR << endl;
+        cout << "If you want to gain weight slowly and steadily, you need to increase your calorie maintenance to 300 and above." << endl;
+        cout << "Therefore, your new calorie maintenance is " << gainweight << endl << endl;
+
+        loadingAnimation();
+
+        cout << "Here is the recommended meal." << endl;
         srand(time(0)); // Seed the random number generator with current time
 
         queue<string> recommendedMeals; // Queue to store the recommended meals
@@ -521,7 +537,11 @@ void weightgain(float weight, float height, int age, char sex) {
             }
 
             meal += "Total Calorie = " + to_string(totalCalorie) + "\n";
+            foods[i].umagahan = breakfast.name;
+            foods[i].tanghalian = lunch.name;
+            foods[i].hapunan = dinner.name;
             recommendedMeals.push(meal);
+            i++;
         }
 
         // Print the recommended meals from the queue
@@ -535,10 +555,13 @@ void weightgain(float weight, float height, int age, char sex) {
         menBMR = 448 + (9 * weight) + (3 * height) - (4 * age);
         int gainweight = menBMR + 400;
 
-        cout << "\nYour recommended calorie maintenance is " << gainweight << endl;
-        cout << "If you want to gain weight slowly and steadily, aim for 300–500 calories more than you burn each day. If you want to gain weight fast, aim for around 700–1,000 calories above your maintenance level." << endl;
-		system("pause");
-        cout << "\nHere are the recommended meals.\n" << endl;
+        cout << "\nYour recommended calorie maintenance is " << menBMR << endl;
+        cout << "If you want to gain weight slowly and steadily, you need to increase your calorie maintenance to 300 and above." << endl;
+        cout << "Therefore, your new calorie maintenance is " << gainweight << endl << endl;
+
+        loadingAnimation();
+
+        cout << "Here is the recommended meal." << endl;
         srand(time(0)); // Seed the random number generator with current time
 
         queue<string> recommendedMeals; // Queue to store the recommended meals
@@ -584,7 +607,11 @@ void weightgain(float weight, float height, int age, char sex) {
             }
 
             meal += "Total Calorie = " + to_string(totalCalorie) + "\n";
+            foods[i].umagahan = breakfast.name;
+            foods[i].tanghalian = lunch.name;
+            foods[i].hapunan = dinner.name;
             recommendedMeals.push(meal);
+            i++;
         }
 
         // Print the recommended meals from the queue
@@ -598,7 +625,7 @@ void weightgain(float weight, float height, int age, char sex) {
 }
 
 void underweight() {
-    cout << "Underweight." << endl;
+    cout << "You are underweight." << endl;
     int x;
     srand(time(NULL));
     x = rand() % 5;
@@ -620,7 +647,7 @@ void normalweight() {
     int x;
     srand(time(NULL));
     x = rand() % 4;
-    cout << "Normal weight." << endl;
+    cout << "You are normal weight." << endl;
     cout << "\nRandom Fact: ";
     if (x == 0) {
         cout << "Maintaining a healthy weight can lower the risk of heart disease, stroke, diabetes, high blood pressure, and many different types of cancers." << endl;
@@ -638,7 +665,7 @@ void overweight() {
     int x;
     srand(time(NULL));
     x = rand() % 3;
-    cout << "Overweight." << endl;
+    cout << "You are overweight." << endl;
     cout << "Random Fact: ";
     if (x == 0)
         cout << "More than 1 in 3 adults are considered to be overweight." << endl;
@@ -653,7 +680,7 @@ void obese() {
     int x;
     srand(time(NULL));
     x = rand() % 4;
-    cout << "Obese." << endl;
+    cout << "You are obese." << endl;
     cout << "\nRandom Fact: ";
     if (x == 0) {
         cout << "Obesity-related conditions include heart disease, stroke, type 2 diabetes, and certain types of cancer. These are among the leading causes of preventable, premature death." << endl;
@@ -679,18 +706,40 @@ void bmi(float h, float w, string units) {
 
     if (result < 18.5) {
         bmiResult = "underweight";
+        recommendation = "gaining weight or bulking";
         underweight();
     } else if (result >= 18.5 && result <= 24.9) {
         bmiResult = "normal";
+        recommendation = "bulking";
         normalweight();
     } else if (result >= 25 && result <= 30) {
         bmiResult = "overweight";
+        recommendation = "losing weight";
         overweight();
     } else {
         cout << "Facts about obese" << endl;
         bmiResult = "OBESE";
+        recommendation = "losing weight";
         obese();
     }
+}
+
+void print_loading_bar(int n) {
+    for (int i = 0; i < n; i++) {
+        cout << "=";
+    }
+    for (int i = n; i < 50; i++) {
+        cout << " ";
+    }
+    cout << " " << n * 2 << "%\r";
+    cout.flush();
+}
+
+void print_header(string text) {
+  system("CLS");
+  cout << string(60, '=') << endl;
+  cout << setw(37) << text << endl;
+  cout << string(60, '=') << endl;
 }
 
 void print_logo(){
@@ -723,98 +772,51 @@ void print_logo(){
             "                    *+                                         ";
 }
 
-void print_bulkup(){
-	    cout << "\n         ####            #####           :####              \n"
-				"     ##=++=#+           #     .=         #++++#+##          \n"
-				"    #=#==+=#*           -      #         #+++=#=++*         \n"
-				"   ##=#==++#*    #*#    .#  .#+    #+#   #++++#=+=*+        \n"
-				"   ##=#==+=#*  ##   ###=.+###::+###   #  #++=+#=++*+        \n"
-				"    #=#==+=#+  #  ##  =.........-  ## .= #++++#=*=*         \n"
-				"     ###=+=#+  #.     #.........#     =  #+++=#=#*          \n"
-				"           ##   #*-## #.........#.##*##   #                 \n"
-				"                       #.......#                            \n"
-				"                       #.......#                            \n"
-				"                      #---------#                           \n"
-				"                      #----#----#                           \n"
-				"                      #  .# #   #                           \n"
-				"                      #   # #.  %                           \n"
-				"                      #  #   #  #                           \n"
-				"                      #  #   #  #                           \n"
-				"                      # #     # #                           \n"
-				"                    #-*-#     +-*=-                         \n"
-				"                   %%######%###%####						 \n";
-}
-
-void print_wloss(){
-	    cout <<"\n                           @.                       @.            \n"              
-				"                   +-      *+                      -#      :*                   \n"
-				"             .+++++%##-    -#                      *=    :##@+++++:             \n"
-				"             .@       =#-  :@                      #-  -#+.      %-             \n"
-				"             .@       :#+. =#                      ++  +%-       %-             \n"
-				"             .%****#+#*.   %:                      .@.   +#+#****#-             \n"
-				"                   **.    **           +*           =%     +#                   \n"
-				"                        *%.                          .#*                        \n"
-				"                       #+-+***+=-::.        ..:-=+***+-+%.                      \n"
-				"                      *+       .:-==++****++==-:.       +#                      \n"
-				"                    .@:                                  .@:                    \n"
-				"                    *#==-:.                          .:--=*%                    \n"
-				"                    @-.::-=++*+-                -+*++=-::..@.                   \n"
-				"                    @.         -*#=.         -**-.         @:                   \n"
-				"                    @.              :#+  =%-               @:                   \n"
-				"                    @:                =##+                 @.                   \n"
-				"                    =%                 +*                 *+                    \n"
-				"                     +*                +*                =#;\n";
-}
-
-void print_wgain(){
-	    cout <<"\n    =%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#-               \n"
-				"   #@%-                                                       -%@*              \n"
-				"  -@@.                     .-+*%%@@@%#*+-.                     -@@:             \n"
-				"  -@@.                  :+%@@%*+=--==+*%@@%+.                  :@@-             \n"
-				"  -@@.                -%@@*-             -*@@#:                :@@-             \n"
-				"  -@@.              .#@@=           :+****= +@@*               :@@-             \n"
-				"  -@@.             .@@#.       .:::.:*@@@@@  .%@%              :@@-             \n"
-				"  -@@.             %@#      -*@@@@@@@@@%+@@:   %@#             :@@-             \n"
-				"  -@@.            =@@.    :%@%=.  -%@%@@*=-    :@@-            :@@-             \n"
-				"  -@@.            =@@#####@@@####%@@@#%@@%######@@:            :@@-             \n"
-				"  -@@.             :=+++++++++++++++++++++++++++=.             :@@-             \n"
-				"  -@@.                                                         :@@-             \n"
-				"  -@@.                                                         :@@-             \n"
-				"  -@@.                                                         :@@-             \n"
-				"  -@@.                                                         :@@-             \n"
-				"  -@@.                                                       .:=@@=.            \n"
-				"  -@@.                                                   -*%@@@@%@@@@%+-        \n"
-				"  -@@.                                                 +@@%+:.     .-+%@@=      \n"
-				"  -@@.                                               -@@=        %@+    +@@   \n"
-				"  -@@.                                              +@@=       %@+       +@@:   \n"
-				"   %@#.                                            #@%    @@#@@#@@#@@#@    @@=  \n"
-				"      :=+++++++++++++++++++++++++++++++++++++++++++#@@.        %@*        :@@:  \n"
-				"                                                    :@@#.      =#-      :%@#    \n"
-				"                                                       .+%@@#+==-==*#@@%=       \n"
-				"                                                          .-+*#%%%#*+-.         \n";
+void userInfo(Meal* foods, string name, int age, float weight, float height,string units, char sex){
+    system("cls");
+    const char *welcome =
+    "\t\t\t\t\t|SM PLANNER: Your Smart Meal Planner|\n"
+    "--------------------------------------------------|USER INFORMATION|----------------------------------------------------\n";
+    cout<<welcome;
+    cout<<"\nName: "<<name<<endl;
+    cout<<"Age: "<<age<<endl;
+    cout<<"Sex: "<<sex<<endl;
+    cout<<"Height: "<<height << " " << units<<endl;
+    cout<<"Weight: "<<weight<<endl;
+    cout<<"BMI: "<<bmiResult<<endl;
+    cout<<"\nWeek Meal Plan: " << endl;
+    for (int i = 0; i < 7; i++) {
+        cout << "Day " << i + 1 << ":" << endl;
+        cout << "Breakfast: " << foods->umagahan << endl;
+        cout << "Lunch: " << foods->tanghalian << endl;
+        cout << "Dinner: " << foods->hapunan << endl;
+        cout << endl;
+    }
+    cout<<"------------------------------------------------------------------------------------------------------------------------\n";
 }
 
 int main() {
-    int choice, choice1;
+    int choice, userChoice;
     string searchMeal;
     string name, units;
     int age;
-    char sex, choice2;
+    char sex, choice2, goBack;
     float weight, height;
-    bool isTrue1;
+    bool isTrue = true;
+    Meal foods[7];
 
-	print_logo();
-    cout << "Loading...\n";
+    print_logo();
+    cout << "\nLoading...\n";
     for (int i = 0; i <= 50; i++) {
         print_loading_bar(i);
         this_thread::sleep_for(chrono::milliseconds(100));
     }
-    
+
     print_header("Smart Meal Planner");
-	cout<<"\nWelcome to Smart Meal Planner!"<<endl;
-	Sleep (3000);
-	cout<<"Enter your credentials to create a profile..."<<endl<<endl;
-	Sleep (2000);
+    cout<<"\nWelcome to Smart Meal Planner!"<<endl;
+    Sleep (3000);
+    cout<<"Enter your credentials to create a profile..."<<endl<<endl;
+    Sleep (2000);
     cout << "Enter your Name: ";
     getline(cin,name);
     cout << "Enter your age: ";
@@ -826,7 +828,7 @@ int main() {
             cin.ignore(100,'\n');
         }else{
             break;
-            }
+        }
     }
 
     do{
@@ -845,143 +847,172 @@ int main() {
         }else{
             break;
         }
-        }
+    }
 
-        cout << "Enter the unit of height [cm/m]: ";
-        cin >> units;
-        cout << "Enter your Weight in KG: ";
+    cout << "Enter the unit of height [cm/m]: ";
+    cin >> units;
+    cout << "Enter your Weight in KG: ";
+    while(true){
+        cin >> weight;
+        if (cin.fail()){
+            cout<<"Please enter your weight in KG: ";
+            cin.clear();
+            cin.ignore(100,'\n');
+        }else{
+            break;
+        }
+    }
+
+    do{
+        cout << "\n\nLoading...\n";
+        for (int i = 0; i <= 50; i++) {
+            print_loading_bar(i);
+            this_thread::sleep_for(chrono::milliseconds(100));
+        }
+        y++;
+    }while(y == 1);
+    cout << "\nLoading Complete.\n";
+    Sleep (2000);
+
+    Info user(name, age, sex, weight, height, units, "");
+
+    while(isTrue){
+        system("cls");
+        print_header("Smart Meal Planner");
+        bmi(user.height, user.weight, user.units);
+        cout << "\n==========================================="<< endl;
+        cout << "\n\t[1] Generate Meal Plan" << endl;
+        cout << "\t[2] Search Meal" << endl;
+        cout << "\t[3] View Profile" << endl;
+        cout << "Your Choice: ";
         while(true){
-            cin >> weight;
-            if (cin.fail()){
-                cout<<"Please enter your weight in KG: ";
+            cin>>userChoice;
+            if(cin.fail()){
+                cout<<"Please enter your real age: ";
                 cin.clear();
-                cin.ignore(100,'\n');
+                cin.ignore(5,'\n');
             }else{
                 break;
             }
         }
 
-    Info user(name, age, sex, weight, height, units, "");
-    bmi(user.height, user.weight, user.units);
-    system("pause");
-    for (int i = 0; i <= 50; i++) {
-        print_loading_bar(i);
-        this_thread::sleep_for(chrono::milliseconds(50));
+        switch(userChoice){
+            case 1:
+                do {
+                    system("cls");
+                    print_header("Smart Meal Planner");
+                    cout << "You are " << bmiResult << ". We recommend " << recommendation << endl;
+                    cout << "\t[1] Weight Loss" << endl;
+                    cout << "\t[2] Gain Muscles" << endl;
+                    cout << "\t[3] Gain Weight" << endl;
+                    cout << "Your Choice: ";
+                    while(true){
+                        cin>>choice;
+                        if(cin.fail()){
+                            cout<<"Please enter your real age: ";
+                            cin.clear();
+                            cin.ignore(4,'\n');
+                        }else{
+                            break;
+                        }
+                    }
+
+                    // Call predefmeals() to initialize the set array with meals
+                    predefmeals();
+                    switch (choice) {
+                        case 1:
+                            weightloss(foods, user.weight, user.height, user.age, user.sex);
+                            break;
+                        case 2:
+                            buffMeUp(foods, user.weight, user.height, user.age, user.sex);
+                            break;
+                        case 3:
+                            weightgain(foods, user.weight, user.height, user.age, user.sex);
+                            break;
+                        default:
+                            cout << "Invalid choice. Please try again." << endl;
+                            continue;  // Go back to the beginning of the loop
+                    }
+
+                    cout << "\n\tDo you want to generate meals again? [Y/N]: ";
+                    cin >> choice2;
+                    if (choice2 == 'N' || choice2 == 'n') {
+                        break;  // Exit the loop
+                    }
+                } while (choice2 == 'Y' || choice2 == 'y');
+                break;
+            case 2:
+                do {
+                    LinkedList myList;
+                    // Call mealList(myList) function to populate the linked list with meals
+                    mealList(myList);
+
+                    system("cls");
+                    Sleep (2000);
+                    int maxBreakfastWidth = 0;
+                    int maxLunchWidth = 0;
+                    int maxDinnerWidth = 0;
+
+                    for (int i = 0; i < 25; i++) {
+                        maxBreakfastWidth = max(maxBreakfastWidth, static_cast<int>(set[i].name.length()));
+                        maxLunchWidth = max(maxLunchWidth, static_cast<int>(set[i + 25].name.length()));
+                        maxDinnerWidth = max(maxDinnerWidth, static_cast<int>(set[i + 50].name.length()));
+                    }
+
+                    // Display breakfast, lunch, and dinner in aligned columns
+                    cout << "Breakfast" << string(maxBreakfastWidth - 8, ' ') << "\tLunch" << string(maxLunchWidth - 5, ' ') << "\t\tDinner\n";
+                    cout << "----------------------------------------------------------------------------------------------------------------------------\n";
+
+                    for (int i = 0; i < 25; i++) {
+                        cout << set[i].name << string(maxBreakfastWidth - set[i].name.length(), ' ');
+                        cout << "\t" << set[i + 25].name << string(maxLunchWidth - set[i + 25].name.length(), ' ');
+                        cout << "\t" << set[i + 50].name << '\n';
+                    }
+
+                    cout << "========================================================================" << endl;
+                    cout << "Enter a meal to search: ";
+
+                    // Clear the input stream
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                    getline(cin, searchMeal);
+
+                    Node* p = myList.search(searchMeal);
+                    if (p != nullptr) {
+                        cout << "Found meal: " << p->name << endl << endl;
+                        ifstream file(p->data);
+                        if (file.is_open()) {
+                            string line;
+                            while (getline(file, line)) {
+                                cout << line << endl;
+                            }
+                            file.close();
+                        } else {
+                            cout << "Unable to open file: " << p->name << endl;
+                        }
+                    } else {
+                        cout << "Meal not found." << endl;
+                    }
+
+                    cout << "\n\tDo you want to search recipe again? [Y/N]: ";
+                    cin >> choice2;
+                    if(choice2 == 'N' || choice2 == 'n'){
+                        continue;
+                    }
+                } while (choice2 == 'Y' || choice2 == 'y');
+                break;
+            case 3:
+                userInfo(foods, name, age, weight, height, units, sex);
+                cout << "\n\tReturn [Y]: ";
+                cin >> goBack;
+                system("cls");
+                break;
+            case 4:
+                exit(0);
+                break;
+        }
     }
-    
-     do {
-    	for (int i = 0; i <= 50; i++) {
-        	this_thread::sleep_for(chrono::milliseconds(50));
-    	}
-		print_header("Smart Meal Planner");
-		cout<<"\nYou are currently "<<bmiResult<<"."<<endl;
-        cout << "\t[1] Weight Loss" << endl;
-        cout << "\t[2] Gain Muscles" << endl;
-        cout << "\t[3] Gain Weight" << endl;
-        cout << "\nYour Choice: ";
-        cin >> choice;
-
-        // Call predefmeals() to initialize the set array with meals
-        predefmeals();
-        if (choice == 1) {
-        	print_header("Weight Loss");
-        	print_wloss();
-     		cout << "\nLoading...\n";
-    		for (int i = 0; i <= 50; i++) {
-        		print_loading_bar(i);
-        	this_thread::sleep_for(chrono::milliseconds(25));
-    		}
-    		print_header("Weight Loss");
-            weightloss(user.weight, user.height, user.age, user.sex);
-        } else if (choice == 2) {
-        	print_header("Gain Muscles");
-        	print_bulkup();
-     		cout << "\nLoading...\n";
-    		for (int i = 0; i <= 50; i++) {
-        		print_loading_bar(i);
-        	this_thread::sleep_for(chrono::milliseconds(25));
-    		}
-    		print_header("Gain Muscles");
-            buffMeUp(user.weight, user.height, user.age, user.sex);
-        } else if (choice == 3) {
-        	print_header("Weight Gain");
-        	print_wgain();
-     		cout << "\nLoading...\n";
-    		for (int i = 0; i <= 50; i++) {
-        		print_loading_bar(i);
-        	this_thread::sleep_for(chrono::milliseconds(25));
-    		}
-    		print_header("Weight Gain");
-            weightgain(user.weight, user.height, user.age, user.sex);
-        }
-        cout << "\n\tDo you want to generate meals again? [Y/N]: ";
-        cin >> choice2;
-        if(choice2 == 'N' || choice2 == 'n'){
-            continue;
-        }
-        system("cls");
-
-    } while (choice2 == 'Y' || choice2 == 'y');
-
-    do {
-    	print_header("Meals List");
-        LinkedList myList;
-        // Call mealList(myList) function to populate the linked list with meals
-        mealList(myList);
-
-        system("cls");
-        int maxBreakfastWidth = 0;
-        int maxLunchWidth = 0;
-        int maxDinnerWidth = 0;
-
-        for (int i = 0; i < 25; i++) {
-            maxBreakfastWidth = max(maxBreakfastWidth, static_cast<int>(set[i].name.length()));
-            maxLunchWidth = max(maxLunchWidth, static_cast<int>(set[i + 25].name.length()));
-            maxDinnerWidth = max(maxDinnerWidth, static_cast<int>(set[i + 50].name.length()));
-        }
-
-        // Display breakfast, lunch, and dinner in aligned columns
-        cout << "Breakfast" << string(maxBreakfastWidth - 8, ' ') << "\tLunch" << string(maxLunchWidth - 5, ' ') << "\t\tDinner\n";
-        cout << "----------------------------------------------------------------------------------------------------------------\n";
-
-        for (int i = 0; i < 25; i++) {
-            cout << set[i].name << string(maxBreakfastWidth - set[i].name.length(), ' ');
-            cout << "\t" << set[i + 25].name << string(maxLunchWidth - set[i + 25].name.length(), ' ');
-            cout << "\t" << set[i + 50].name << '\n';
-        }
-
-        cout << "========================================================================" << endl;
-        cout << "Enter a meal to search: ";
-
-        // Clear the input stream
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-        getline(cin, searchMeal);
-
-        Node* p = myList.search(searchMeal);
-        if (p != nullptr) {
-            cout << "Found meal: " << p->name << endl << endl;
-            ifstream file(p->data);
-            if (file.is_open()) {
-                string line;
-                while (getline(file, line)) {
-                    cout << line << endl;
-                }
-                file.close();
-            } else {
-                cout << "Unable to open file: " << p->name << endl;
-            }
-        } else {
-            cout << "Meal not found." << endl;
-        }
-
-    cout << "\n\tDo you want to search recipe again? [Y/N]: ";
-    cin >> choice2;
-    if(choice2 == 'N' || choice2 == 'n'){
-        continue;
-    }
-    } while (choice2 == 'Y' || choice2 == 'y');
 
     return 0;
 }
