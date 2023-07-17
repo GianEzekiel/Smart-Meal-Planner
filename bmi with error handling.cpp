@@ -21,6 +21,7 @@ float menBMR;
 float womenBMR;
 int y = 1;
 int days;
+int n = 0;
 
 struct Node {
     string name;
@@ -270,17 +271,15 @@ void sevenDayMealLoss(Meal* foods, int gainweight, int i, int n, int days){
             // Calculate the total calorie count
             totalCalorie = breakfast.calr + lunch.calr + dinner.calr;
 
-            if (totalCalorie <= gainweight) {
-                meal += "Day " + to_string(recommendedMeals.size() + 1) + "\n";
-                meal += "Breakfast: " + breakfast.name + "\n";
-                meal += "Lunch: " + lunch.name + "\n";
-                meal += "Dinner: " + dinner.name + "\n";
-                meal += "Total Calorie = " + to_string(totalCalorie) + "\n";
-                foods[i].umagahan = breakfast.name;
-                foods[i].tanghalian = lunch.name;
-                foods[i].hapunan = dinner.name;
-                recommendedMeals.push(meal);
-            }
+            meal += "Day " + to_string(recommendedMeals.size() + 1) + "\n";
+            meal += "Breakfast: " + breakfast.name + "\n";
+            meal += "Lunch: " + lunch.name + "\n";
+            meal += "Dinner: " + dinner.name + "\n";
+            meal += "Total Calorie = " + to_string(totalCalorie) + "\n";
+            foods[i].umagahan = breakfast.name;
+            foods[i].tanghalian = lunch.name;
+            foods[i].hapunan = dinner.name;
+            recommendedMeals.push(meal);
             i++;
         }
 
@@ -372,6 +371,7 @@ void sevenDayMealLoss(Meal* foods, int gainweight, int i, int n, int days){
         }
 }
     }
+
 void option(){
     cout << "\t[1] 7-Day Meal Plan" << endl;
     cout << "\t[2] 1-Day Meal Plan" << endl;
@@ -721,7 +721,6 @@ switch (n) {
 
 void weightloss(Meal* foods, float weight, float height, int age, char sex) {
     int i = 0;
-    int n;
     if (sex == 'M' || sex == 'm') {
         menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
         int gainweight = menBMR - 400;
@@ -769,7 +768,6 @@ void weightloss(Meal* foods, float weight, float height, int age, char sex) {
 
 void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
     int i = 0;
-    int n;
      if (sex == 'M' || sex == 'm') {
         int menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
         int buffed = 1.5 * weight;
@@ -813,7 +811,6 @@ void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
 
 void weightgain(Meal* foods, float weight, float height, int age, char sex) {
     int i = 0;
-    int n;
      if (sex == 'M' || sex == 'm') {
         int menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
         int gainweight = menBMR + 400;
@@ -1021,12 +1018,32 @@ void userInfo(Meal* foods, string name, int age, float weight, float height,stri
     cout<<"Weight: "<<weight<<endl;
     cout<<"BMI: "<<bmiResult<<endl;
     cout<<"\nWeek Meal Plan: " << endl;
-    for (int i = 0; i < 7; i++) {
+    if(n == 1){
+        for (int i = 0; i < 7; i++) {
         cout << "Day " << i + 1 << ":" << endl;
         cout << "Breakfast: " << foods->umagahan << endl;
         cout << "Lunch: " << foods->tanghalian << endl;
         cout << "Dinner: " << foods->hapunan << endl;
         cout << endl;
+    }
+    }else if(n == 2){
+        for (int i = 0; i < 1; i++) {
+        cout << "Day " << i + 1 << ":" << endl;
+        cout << "Breakfast: " << foods->umagahan << endl;
+        cout << "Lunch: " << foods->tanghalian << endl;
+        cout << "Dinner: " << foods->hapunan << endl;
+        cout << endl;
+    }
+    }else if (n == 3){
+        for (int i = 0; i < days; i++) {
+        cout << "Day " << i + 1 << ":" << endl;
+        cout << "Breakfast: " << foods->umagahan << endl;
+        cout << "Lunch: " << foods->tanghalian << endl;
+        cout << "Dinner: " << foods->hapunan << endl;
+        cout << endl;
+    }
+    }else{
+        cout << "Please generate a meal first." << endl;
     }
     cout<<"------------------------------------------------------------------------------------------------------------------------\n";
 }
