@@ -747,7 +747,21 @@ void weightloss(Meal* foods, float weight, float height, int age, char sex) {
 
         if (n == 3){
             cout << "How many days? : ";
+                        while (true)
+            {
             cin >> days;
+
+            if (days<0||days>7)
+            {
+                cin.clear();
+                cin.ignore(100,'\n');
+                cout<<"Please enter the exact amount of day/s [1-7]: ";
+            }
+            else
+            {
+                break;
+            }
+            }
         }
         cout << endl;
 
@@ -783,7 +797,21 @@ void weightloss(Meal* foods, float weight, float height, int age, char sex) {
         cout << endl;
         if (n == 3){
             cout << "How many days? : ";
+                        while (true)
+            {
             cin >> days;
+
+            if (days<0||days>7)
+            {
+                cin.clear();
+                cin.ignore(100,'\n');
+                cout<<"Please enter the exact amount of day/s [1-7]: ";
+            }
+            else
+            {
+                break;
+            }
+            }
         }
 
         loadingAnimation();
@@ -820,7 +848,21 @@ void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
         cout << endl;
         if (n == 3){
             cout << "How many days? : ";
+                        while (true)
+            {
             cin >> days;
+
+            if (days<0||days>7)
+            {
+                cin.clear();
+                cin.ignore(100,'\n');
+                cout<<"Please enter the exact amount of day/s [1-7]: ";
+            }
+            else
+            {
+                break;
+            }
+            }
         }
 
         loadingAnimation();
@@ -853,7 +895,21 @@ void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
         cout << endl;
         if (n == 3){
             cout << "How many days? : ";
+                        while (true)
+            {
             cin >> days;
+
+            if (days<0||days>7)
+            {
+                cin.clear();
+                cin.ignore(100,'\n');
+                cout<<"Please enter the exact amount of day/s [1-7]: ";
+            }
+            else
+            {
+                break;
+            }
+            }
         }
 
         loadingAnimation();
@@ -890,7 +946,21 @@ void weightgain(Meal* foods, float weight, float height, int age, char sex) {
         cout << endl;
         if (n == 3){
             cout << "How many days? : ";
+                        while (true)
+            {
             cin >> days;
+
+            if (days<0||days>7)
+            {
+                cin.clear();
+                cin.ignore(100,'\n');
+                cout<<"Please enter the exact amount of day/s [1-7]: ";
+            }
+            else
+            {
+                break;
+            }
+            }
         }
 
         loadingAnimation();
@@ -925,7 +995,21 @@ void weightgain(Meal* foods, float weight, float height, int age, char sex) {
         cout << endl;
         if (n == 3){
             cout << "How many days? : ";
+                        while (true)
+            {
             cin >> days;
+
+            if (days<0||days>7)
+            {
+                cin.clear();
+                cin.ignore(100,'\n');
+                cout<<"Please enter the exact amount of day/s [1-7]: ";
+            }
+            else
+            {
+                break;
+            }
+            }
         }
 
         loadingAnimation();
@@ -1182,9 +1266,10 @@ int main() {
             break;
         }
     }
-
+do {
     cout << "Enter the unit of height [cm/m]: ";
     cin >> units;
+}while (units!="cm"&&units!="m");
     cout << "Enter your Weight in KG: ";
     while(true){
         cin >> weight;
