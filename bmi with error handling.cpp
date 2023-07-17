@@ -730,9 +730,23 @@ void weightloss(Meal* foods, float weight, float height, int age, char sex) {
         cout << "Therefore, your new calorie maintenance is " << gainweight << endl << endl;
 
         option();
-        cin >> n;
+        while (true)
+        {
+        	cin >> n;
+        	if (cin.fail())
+        	{
+        		cin.clear();
+        		cin.ignore(100,'\n');
+        		cout<<"Please enter a correct choice: ";
+			}
+			else
+			{
+				break;
+			}
+		}
+
         if (n == 3){
-            cout << "How may days? : ";
+            cout << "How many days? : ";
             cin >> days;
         }
         cout << endl;
@@ -752,10 +766,23 @@ void weightloss(Meal* foods, float weight, float height, int age, char sex) {
         cout << "Therefore, your new calorie maintenance is " << gainweight << endl << endl;
 
         option();
-        cin >> n;
+                while (true)
+        {
+        	cin >> n;
+        	if (cin.fail())
+        	{
+        		cin.clear();
+        		cin.ignore(100,'\n');
+        		cout<<"Please enter a correct choice: ";
+			}
+			else
+			{
+				break;
+			}
+		}
         cout << endl;
         if (n == 3){
-            cout << "How may days? : ";
+            cout << "How many days? : ";
             cin >> days;
         }
 
@@ -776,10 +803,23 @@ void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
         cout << "In order to gain muscle, you need to take around " << buffed << " daily."<< endl << endl;
 
         option();
-        cin >> n;
+                while (true)
+        {
+        	cin >> n;
+        	if (cin.fail())
+        	{
+        		cin.clear();
+        		cin.ignore(100,'\n');
+        		cout<<"Please enter a correct choice: ";
+			}
+			else
+			{
+				break;
+			}
+		}
         cout << endl;
         if (n == 3){
-            cout << "How may days? : ";
+            cout << "How many days? : ";
             cin >> days;
         }
 
@@ -796,10 +836,23 @@ void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
         cout << "In order to gain muscle, you need to take around " << buffed << " daily."<< endl << endl;
 
         option();
-        cin >> n;
+                while (true)
+        {
+        	cin >> n;
+        	if (cin.fail())
+        	{
+        		cin.clear();
+        		cin.ignore(100,'\n');
+        		cout<<"Please enter a correct choice: ";
+			}
+			else
+			{
+				break;
+			}
+		}
         cout << endl;
         if (n == 3){
-            cout << "How may days? : ";
+            cout << "How many days? : ";
             cin >> days;
         }
 
@@ -820,10 +873,23 @@ void weightgain(Meal* foods, float weight, float height, int age, char sex) {
         cout << "Therefore, your new calorie maintenance is " << gainweight << endl << endl;
 
         option();
-        cin >> n;
+                while (true)
+        {
+        	cin >> n;
+        	if (cin.fail())
+        	{
+        		cin.clear();
+        		cin.ignore(100,'\n');
+        		cout<<"Please enter a correct choice: ";
+			}
+			else
+			{
+				break;
+			}
+		}
         cout << endl;
         if (n == 3){
-            cout << "How may days? : ";
+            cout << "How many days? : ";
             cin >> days;
         }
 
@@ -842,10 +908,23 @@ void weightgain(Meal* foods, float weight, float height, int age, char sex) {
         cout << "Therefore, your new calorie maintenance is " << gainweight << endl << endl;
 
         option();
-        cin >> n;
+                while (true)
+        {
+        	cin >> n;
+        	if (cin.fail())
+        	{
+        		cin.clear();
+        		cin.ignore(100,'\n');
+        		cout<<"Please enter a correct choice: ";
+			}
+			else
+			{
+				break;
+			}
+		}
         cout << endl;
         if (n == 3){
-            cout << "How may days? : ";
+            cout << "How many days? : ";
             cin >> days;
         }
 
@@ -950,7 +1029,7 @@ void bmi(float h, float w, string units) {
         overweight();
     } else {
         cout << "Facts about obese" << endl;
-        bmiResult = "OBESE";
+        bmiResult = "obese";
         recommendation = "losing weight";
         obese();
     }
@@ -999,8 +1078,6 @@ void print_logo(){
     "\t\tGETFITEATRIGHTLE  GETFIT  DEATRIG  GE  IT  TRI    ET  ETF    DE  RIGHTG  FI  ATRIGHTLETS\n"
     "\t\tGETFITEATRIGHTLE  GETFIT       IG  GE  IT  TRIG   ET  ETFI   DE      TG  FIT  TRIGHTLETS\n"
     "\t\tGETFITEATRIGHTLETSGETFITANDEATRIGHTGETFITEATRIGHTLETSGETFITANDEATRIGHTGETFITEATRIGHTLETS\n\n";                             ;
-    SetConsoleCP(437);
-    SetConsoleOutputCP(437);
     cout<<text;
 
 }
@@ -1062,15 +1139,18 @@ int main() {
     cout << "\nLoading...\n";
     for (int i = 0; i <= 50; i++) {
         print_loading_bar(i);
-        this_thread::sleep_for(chrono::milliseconds(100));
+        this_thread::sleep_for(chrono::milliseconds(70));
+
     }
+    cout<<"\nLoading Complete"<<endl;
+    system("pause");
 
     SetConsoleTextAttribute(h, 15);
     print_header("Smart Meal Planner");
-    cout<<"\nWelcome to Smart Meal Planner!"<<endl;
-    Sleep (3000);
+    cout<<"\nWelcome to S.M Planner: Your Smart Meal Planner!"<<endl;
+    Sleep (1000);
     cout<<"Enter your credentials to create a profile..."<<endl<<endl;
-    Sleep (2000);
+    Sleep (1500);
     cout << "Enter your Name: ";
     getline(cin,name);
     cout << "Enter your age: ";
@@ -1091,11 +1171,11 @@ int main() {
         cin.ignore(100,'\n');
     }while (sex!='M'&&sex!='m'&&sex!='f'&&sex!='F');
 
-    cout << "Enter your Height: ";
+    cout << "Enter your Height in terms of cm or m: ";
     while (true){
         cin >> height;
         if(cin.fail()){
-            cout<<"Please enter your Height: ";
+            cout<<"Please enter your Height in terms of cm or m: ";
             cin.clear();
             cin.ignore(100,'\n');
         }else{
@@ -1121,12 +1201,12 @@ int main() {
         cout << "\n\nLoading...\n";
         for (int i = 0; i <= 50; i++) {
             print_loading_bar(i);
-            this_thread::sleep_for(chrono::milliseconds(100));
+            this_thread::sleep_for(chrono::milliseconds(60));
         }
         y++;
     }while(y == 1);
     cout << "\nLoading Complete.\n";
-    Sleep (2000);
+    Sleep (1000);
 
     Info user(name, age, sex, weight, height, units, "");
 
@@ -1143,9 +1223,9 @@ int main() {
         while(true){
             cin>>userChoice;
             if(cin.fail()){
-                cout<<"Please enter your real age: ";
+                cout<<"Please enter a correct choice: ";
                 cin.clear();
-                cin.ignore(5,'\n');
+                cin.ignore(100,'\n');
             }else{
                 break;
             }
@@ -1166,9 +1246,9 @@ int main() {
                     while(true){
                         cin>>choice;
                         if(cin.fail()){
-                            cout<<"Please enter your real age: ";
+                            cout<<"Please enter a correct choice: ";
                             cin.clear();
-                            cin.ignore(4,'\n');
+                            cin.ignore(100,'\n');
                         }else{
                             break;
                         }
