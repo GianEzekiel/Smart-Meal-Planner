@@ -1176,7 +1176,7 @@ void userInfo(Meal* foods, string name, int age, float weight, float height,stri
     cout<<"Age: "<<age<<endl;
     cout<<"Sex: "<<sex<<endl;
     cout<<"Height: "<<height << " " << units<<endl;
-    cout<<"Weight: "<<weight<<endl;
+    cout<<"Weight: "<<weight<<"kg"<<endl;
     cout<<"BMI: "<<bmiResult<<endl;
     cout<<"\nWeek Meal Plan: " << endl;
     if(n == 1){
@@ -1202,6 +1202,7 @@ void userInfo(Meal* foods, string name, int age, float weight, float height,stri
         cout << "Lunch: " << foods->tanghalian << endl;
         cout << "Dinner: " << foods->hapunan << endl;
         cout << endl;
+
     }
     }else{
         cout << "Please generate a meal first." << endl;
@@ -1214,7 +1215,7 @@ int main() {
     string searchMeal;
     string name, units;
     int age;
-    char sex, choice2, goBack;
+    char sex, choice2, goBack[50];
     float weight, height;
     bool isTrue = true;
     Meal foods[7];
