@@ -1079,26 +1079,30 @@ void userInfo(Meal* foods, string name, int age, float weight, float height,stri
     cout<<"Weight: "<<weight<<"kg"<<endl;
     cout<<"BMI: "<<bmiResult<<endl;
     cout<<"\nWeek Meal Plan: " << endl;
-    if(n == 1){
-        for (int i = 0; i < 7; i++) {
-        cout << "Day " << i + 1 << ":" << endl;
-        cout << "Breakfast: " << foods->umagahan << endl;
-        cout << "Lunch: " << foods->tanghalian << endl;
-        cout << "Dinner: " << foods->hapunan << endl;
-        cout << endl;
-    }
-    }else if (n == 2){
-        for (int i = 0; i < days; i++) {
-        cout << "Day " << i + 1 << ":" << endl;
-        cout << "Breakfast: " << foods->umagahan << endl;
-        cout << "Lunch: " << foods->tanghalian << endl;
-        cout << "Dinner: " << foods->hapunan << endl;
-        cout << endl;
+if (n == 1) {
 
+    for (int i = 0; i < 7; i++) {
+        cout << "Day "<<i + 1 <<":"<<endl;
+        cout << "Breakfast: " << foods[i].umagahan << endl;
+        cout << "Lunch: " << foods[i].tanghalian << endl;
+        cout << "Dinner: " << foods[i].hapunan << endl;
+        cout << endl;
     }
-    }else{
+}  else if (n == 2) {
+    if (days > 0) {
+        for (int i = 0; i < days; i++) {
+            cout << "Day " << i + 1 << ":" << endl;
+            cout << "Breakfast: " << foods[i].umagahan << endl;
+            cout << "Lunch: " << foods[i].tanghalian << endl;
+            cout << "Dinner: " << foods[i].hapunan << endl;
+            cout << endl;
+        }
+    } else {
         cout << "Please generate a meal first." << endl;
     }
+} else {
+    cout << "Invalid option. Please choose a valid option." << endl;
+}
     cout<<"------------------------------------------------------------------------------------------------------------------------\n";
 }
 
