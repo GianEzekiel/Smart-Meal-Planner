@@ -23,6 +23,24 @@ int y = 1;
 int days;
 int n = 0;
 
+void print_loading_bar(int n) {
+    for (int i = 0; i < n; i++) {
+        cout << "=";
+    }
+    for (int i = n; i < 50; i++) {
+        cout << " ";
+    }
+    cout << " " << n * 2 << "%\r";
+    cout.flush();
+}
+
+void print_header(string text) {
+  system("CLS");
+  cout << string(60, '=') << endl;
+  cout << setw(37) << text << endl;
+  cout << string(60, '=') << endl;
+}
+
 struct Node {
     string name;
     string data;
@@ -376,7 +394,7 @@ void option(){
     cout << "\t[1] 7-Day Meal Plan" << endl;
     cout << "\t[2] 1-Day Meal Plan" << endl;
     cout << "\t[3] Customize Meal Plan" << endl;
-    cout << "Your choice: ";
+    cout << "\nYour choice: ";
 }
 
 void sevenDayMealBuff(Meal* foods, int gainweight, int i, int n, int days){
@@ -720,6 +738,18 @@ switch (n) {
 }
 
 void weightloss(Meal* foods, float weight, float height, int age, char sex) {
+	do{
+        cout << "\n\nLoading...\n";
+        for (int i = 0; i <= 50; i++) {
+            print_loading_bar(i);
+            this_thread::sleep_for(chrono::milliseconds(60));
+        }
+        y++;
+    }while(y == 1);
+    cout << "\n\nLoading Complete.\n";
+    Sleep (1000);
+    print_header("Weight Loss");
+    
     int i = 0;
     if (sex == 'M' || sex == 'm') {
         menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
@@ -767,8 +797,9 @@ void weightloss(Meal* foods, float weight, float height, int age, char sex) {
 
         loadingAnimation();
 
-        cout << "Here is the recommended meal." << endl;
-
+        cout << "Here is the recommended meal..." << endl;
+		Sleep (3000);
+		print_header("Weight Loss");
         sevenDayMealLoss(foods, gainweight, i, n, days);
 
     } else if (sex == 'F' || sex == 'f') {
@@ -816,12 +847,26 @@ void weightloss(Meal* foods, float weight, float height, int age, char sex) {
 
         loadingAnimation();
 
-        cout << "Here is the recommended meal." << endl;
+        cout << "Here is the recommended meal..." << endl;
+        Sleep (2500);
+		print_header("Weight Loss");
         sevenDayMealLoss(foods, gainweight, i, n, days);
 }
 }
 
 void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
+	do{
+        cout << "\n\nLoading...\n";
+        for (int i = 0; i <= 50; i++) {
+            print_loading_bar(i);
+            this_thread::sleep_for(chrono::milliseconds(60));
+        }
+        y++;
+    }while(y == 1);
+    cout << "\n\nLoading Complete.\n";
+    Sleep (1000);
+    print_header("Gain Muscle");
+	
     int i = 0;
      if (sex == 'M' || sex == 'm') {
         int menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
@@ -868,6 +913,8 @@ void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
         loadingAnimation();
 
         cout << "Here is the recommended meal." << endl;
+        Sleep (3000);
+		print_header("Gain Muscle");
         sevenDayMealBuff(foods, buffed, i, n, days);
 
     }else if (sex == 'F' || sex == 'f') {
@@ -913,12 +960,25 @@ void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
         }
 
         loadingAnimation();
-
-        cout << "Here is the recommended meal." << endl;
+        Sleep (2500);
+		print_header("Gain Muscle");
+        cout << "Here is the recommended meal..." << endl;
         sevenDayMealBuff(foods, buffed, i, n, days);
 }}
 
 void weightgain(Meal* foods, float weight, float height, int age, char sex) {
+	do{
+        cout << "\n\nLoading...\n";
+        for (int i = 0; i <= 50; i++) {
+            print_loading_bar(i);
+            this_thread::sleep_for(chrono::milliseconds(60));
+        }
+        y++;
+    }while(y == 1);
+    cout << "\n\nLoading Complete.\n";
+    Sleep (1000);
+    print_header("Weight Gain");
+	
     int i = 0;
      if (sex == 'M' || sex == 'm') {
         int menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
@@ -964,9 +1024,9 @@ void weightgain(Meal* foods, float weight, float height, int age, char sex) {
         }
 
         loadingAnimation();
-
-        cout << "Here is the recommended meal." << endl;
-
+        Sleep (2500);
+		print_header("Weight Gain");
+        cout << "Here is the recommended meal..." << endl;
         sevenDayMealGain(foods, gainweight, i, n, days);
 
     } else if (sex == 'F' || sex == 'f') {
@@ -1013,8 +1073,9 @@ void weightgain(Meal* foods, float weight, float height, int age, char sex) {
         }
 
         loadingAnimation();
-
-        cout << "Here is the recommended meal." << endl;
+        Sleep (2500);
+		print_header("Weight Gain");
+        cout << "Here is the recommended meal..." << endl;
         sevenDayMealGain(foods, gainweight, i, n, days);
     }
 }
@@ -1035,7 +1096,6 @@ void underweight() {
         cout << "Being underweight can be influenced by stress, anxiety, depression, and/or eating disorders." << endl;
     else if (x == 4)
         cout << "A main cause of being underweight is malnutrition." << endl;
-    cout<<endl;
 }
 
 void normalweight() {
@@ -1053,7 +1113,6 @@ void normalweight() {
     } else if (x == 3) {
         cout << "You are less likely to develop diabetes, heart disease, certain cancers, gallstones, osteoarthritis, breathing problems, and sleep apnea." << endl;
     }
-    cout<<endl;
 }
 
 void overweight() {
@@ -1068,7 +1127,6 @@ void overweight() {
         cout << "Men are more likely than women to be overweight." << endl;
     else if (x == 2)
         cout << "More than 2 in 3 adults are considered to be overweight or have obesity." << endl;
-    cout<<endl;
 }
 
 void obese() {
@@ -1086,7 +1144,6 @@ void obese() {
     } else if (x == 3) {
         cout << "39 million children under the age of 5 were overweight or obese in 2020." << endl;
     }
-    cout<<endl;
 }
 
 void bmi(float h, float w, string units) {
@@ -1117,24 +1174,6 @@ void bmi(float h, float w, string units) {
         recommendation = "losing weight";
         obese();
     }
-}
-
-void print_loading_bar(int n) {
-    for (int i = 0; i < n; i++) {
-        cout << "=";
-    }
-    for (int i = n; i < 50; i++) {
-        cout << " ";
-    }
-    cout << " " << n * 2 << "%\r";
-    cout.flush();
-}
-
-void print_header(string text) {
-  system("CLS");
-  cout << string(60, '=') << endl;
-  cout << setw(37) << text << endl;
-  cout << string(60, '=') << endl;
 }
 
 void print_logo(){
@@ -1291,7 +1330,7 @@ do {
         }
         y++;
     }while(y == 1);
-    cout << "\nLoading Complete.\n";
+    cout << "\n\nLoading Complete.\n";
     Sleep (1000);
 
     Info user(name, age, sex, weight, height, units, "");
@@ -1305,7 +1344,7 @@ do {
         cout << "\t[2] Search Meal" << endl;
         cout << "\t[3] View Profile" << endl;
         cout << "\t[4] Exit" << endl;
-        cout << "Your Choice: ";
+        cout << "\nYour Choice: ";
         while(true){
             cin>>userChoice;
             if(cin.fail()){
@@ -1328,7 +1367,7 @@ do {
                     cout << "\t[1] Weight Loss" << endl;
                     cout << "\t[2] Gain Muscles" << endl;
                     cout << "\t[3] Gain Weight" << endl;
-                    cout << "Your Choice: ";
+                    cout << "\nYour Choice: ";
                     while(true){
                         cin>>choice;
                         if(cin.fail()){
