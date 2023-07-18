@@ -94,7 +94,7 @@ void mealList(LinkedList& myList) {
     myList.insert( "Sweet Potato Hash" , "Meals/Breakfast/Sweet potato hash.txt");
     myList.insert( "Tofu Scramble" , "Meals/Breakfast/Tofu scramble.txt");
     myList.insert( "Veggie Breakfast Wrap" , "Meals/Breakfast/Veggie breakfast wrap.txt");
-    myList.insert( "veggie Omellete" , "Meals/Breakfast/veggie Omellete.txt");
+    myList.insert( "veggie Omelette" , "Meals/Breakfast/veggie Omellete.txt");
     myList.insert( "Whole Grain Cereal" , "Meals/Breakfast/Whole Grain Cereal.txt");
     myList.insert( "Asian Chicken Quinoa Bowl with Almond Butter Sauce" , "Meals/Lunch/Asian Chicken Quinoa bowl with almond butter sauce.txt");
     myList.insert( "BLT Pasta Salad" , "Meals/Lunch/BLT Pasta salad.txt");
