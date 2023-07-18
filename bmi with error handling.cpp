@@ -311,43 +311,6 @@ void sevenDayMealLoss(Meal* foods, int gainweight, int i, int n, int days){
         }
             break;
         case 2: {
-            int totalCalorie = 0;
-
-            // Generate random indices for breakfast, lunch, and dinner
-            int breakfastIndex = rand() % 20;
-            int lunchIndex = rand() % 20 + 25;
-            int dinnerIndex = rand() % 20 + 50;
-
-            // Retrieve the randomly selected meals
-            meals breakfast = set[breakfastIndex];
-            meals lunch = set[lunchIndex];
-            meals dinner = set[dinnerIndex];
-
-            // Calculate the total calorie count
-            totalCalorie = breakfast.calr + lunch.calr + dinner.calr;
-
-            if (totalCalorie <= gainweight) {
-                string meal = "Day " + to_string(recommendedMeals.size() + 1) + "\n";
-                meal += "Breakfast: " + breakfast.name + "\n";
-                meal += "Lunch: " + lunch.name + "\n";
-                meal += "Dinner: " + dinner.name + "\n";
-                meal += "Total Calorie = " + to_string(totalCalorie) + "\n";
-                foods[i].umagahan = breakfast.name;
-                foods[i].tanghalian = lunch.name;
-                foods[i].hapunan = dinner.name;
-                recommendedMeals.push(meal);
-            }
-
-            // Print the recommended meals from the queue
-            int day = 1;
-            while (!recommendedMeals.empty()) {
-                cout << recommendedMeals.front() << endl;
-                recommendedMeals.pop();
-                day++;
-            }
-            break;
-        }
-        case 3: {
             while (recommendedMeals.size() < days) {
                 int totalCalorie = 0;
 
@@ -455,54 +418,6 @@ void sevenDayMealBuff(Meal* foods, int gainweight, int i, int n, int days){
             break;
         }
         case 2: {
-            int totalProtein = 0;
-                string meal; // Declare the meal variable
-
-                // Generate random indices for breakfast, lunch, and dinner
-                int breakfastIndex = rand() % 20;
-                int lunchIndex = rand() % 20 + 25;
-                int dinnerIndex = rand() % 20 + 50;
-
-                // Retrieve the randomly selected meals
-                meals breakfast = set[breakfastIndex];
-                meals lunch = set[lunchIndex];
-                meals dinner = set[dinnerIndex];
-
-                // Calculate the total calorie count
-                meal += "Breakfast: " + breakfast.name + "\n";
-                totalProtein += breakfast.protn;
-                if (lunch.protn <= 30) {
-                    meal += "Lunch: 2 servings of " + lunch.name + "\n";
-                    totalProtein += 2 * lunch.protn;
-                } else {
-                    meal += "Lunch: " + lunch.name + "\n";
-                    totalProtein += lunch.protn;
-                }
-
-                if (dinner.protn <= 30) {
-                    meal += "Dinner: 2 servings of " + dinner.name + "\n";
-                    totalProtein += 2 * dinner.protn;
-                } else {
-                    meal += "Dinner: " + dinner.name + "\n";
-                    totalProtein += dinner.protn;
-                }
-
-                meal += "Total Protein = " + to_string(totalProtein) + "\n";
-                foods[i].umagahan = breakfast.name;
-                foods[i].tanghalian = lunch.name;
-                foods[i].hapunan = dinner.name;
-                recommendedMeals.push(meal);
-
-            // Print the recommended meals from the queue
-            int day = 1;
-            while (!recommendedMeals.empty()) {
-                cout << recommendedMeals.front() << endl;
-                recommendedMeals.pop();
-                day++;
-        }
-            break;
-        }
-        case 3: {
 
             while (recommendedMeals.size() < days) {
                 int totalProtein = 0;
@@ -622,60 +537,6 @@ switch (n) {
         break;
     }
     case 2: {
-        int totalCalorie = 0;
-        string meal; // Declare the meal variable
-
-        // Generate random indices for breakfast, lunch, and dinner
-        int breakfastIndex = rand() % 20;
-        int lunchIndex = rand() % 20 + 25;
-        int dinnerIndex = rand() % 20 + 50;
-
-        // Retrieve the randomly selected meals
-        meals breakfast = set[breakfastIndex];
-        meals lunch = set[lunchIndex];
-        meals dinner = set[dinnerIndex];
-
-        // Calculate the total calorie count
-        meal += "Breakfast: " + breakfast.name + "\n";
-        totalCalorie += breakfast.calr;
-        if (lunch.calr <= 700 && lunch.calr >= 400) {
-            meal += "Lunch: 2 servings of " + lunch.name + "\n";
-            totalCalorie += 2 * lunch.calr;
-        } else if (lunch.calr <= 399) {
-            meal += "Lunch: 3 servings of " + lunch.name + "\n";
-            totalCalorie += 3 * lunch.calr;
-        } else {
-            meal += "Lunch: " + lunch.name + "\n";
-            totalCalorie += lunch.calr;
-        }
-
-        if (dinner.calr <= 700 && dinner.calr >= 400) {
-            meal += "Dinner: 2 servings of " + dinner.name + "\n";
-            totalCalorie += 2 * dinner.calr;
-        } else if (dinner.calr <= 399) {
-            meal += "Dinner: 3 servings of " + dinner.name + "\n";
-            totalCalorie += 3 * dinner.calr;
-        } else {
-            meal += "Dinner: " + dinner.name + "\n";
-            totalCalorie += dinner.calr;
-        }
-
-        meal += "Total Calorie = " + to_string(totalCalorie) + "\n";
-        foods[i].umagahan = breakfast.name;
-        foods[i].tanghalian = lunch.name;
-        foods[i].hapunan = dinner.name;
-        recommendedMeals.push(meal);
-
-        // Print the recommended meals from the queue
-        int day = 1;
-        while (!recommendedMeals.empty()) {
-            cout << recommendedMeals.front() << endl;
-            recommendedMeals.pop();
-            day++;
-        }
-        break;
-    }
-    case 3: {
         int day = 1;
         int i = 0; // Declare and initialize the 'i' variable
         while (recommendedMeals.size() < days) {
@@ -1226,15 +1087,7 @@ void userInfo(Meal* foods, string name, int age, float weight, float height,stri
         cout << "Dinner: " << foods->hapunan << endl;
         cout << endl;
     }
-    }else if(n == 2){
-        for (int i = 0; i < 1; i++) {
-        cout << "Day " << i + 1 << ":" << endl;
-        cout << "Breakfast: " << foods->umagahan << endl;
-        cout << "Lunch: " << foods->tanghalian << endl;
-        cout << "Dinner: " << foods->hapunan << endl;
-        cout << endl;
-    }
-    }else if (n == 3){
+    }else if (n == 2){
         for (int i = 0; i < days; i++) {
         cout << "Day " << i + 1 << ":" << endl;
         cout << "Breakfast: " << foods->umagahan << endl;
