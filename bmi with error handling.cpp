@@ -355,8 +355,7 @@ void sevenDayMealLoss(Meal* foods, int gainweight, int i, int n, int days){
 
 void option(){
     cout << "\t[1] 7-Day Meal Plan" << endl;
-    cout << "\t[2] 1-Day Meal Plan" << endl;
-    cout << "\t[3] Customize Meal Plan" << endl;
+    cout << "\t[2] Customize Meal Plan" << endl;
     cout << "\nYour choice: ";
 }
 
@@ -610,7 +609,7 @@ void weightloss(Meal* foods, float weight, float height, int age, char sex) {
     cout << "\n\nLoading Complete.\n";
     Sleep (1000);
     print_header("Weight Loss");
-    
+
     int i = 0;
     if (sex == 'M' || sex == 'm') {
         menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
@@ -624,7 +623,7 @@ void weightloss(Meal* foods, float weight, float height, int age, char sex) {
         while (true)
         {
         	cin >> n;
-        	if (cin.fail())
+        	if (cin.fail()||n>2||n<1)
         	{
         		cin.clear();
         		cin.ignore(100,'\n');
@@ -636,7 +635,7 @@ void weightloss(Meal* foods, float weight, float height, int age, char sex) {
 			}
 		}
 
-        if (n == 3){
+        if (n == 2){
             cout << "How many days? : ";
                         while (true)
             {
@@ -675,7 +674,7 @@ void weightloss(Meal* foods, float weight, float height, int age, char sex) {
                 while (true)
         {
         	cin >> n;
-        	if (cin.fail())
+        	if (cin.fail()||n>2||n<1)
         	{
         		cin.clear();
         		cin.ignore(100,'\n');
@@ -687,7 +686,7 @@ void weightloss(Meal* foods, float weight, float height, int age, char sex) {
 			}
 		}
         cout << endl;
-        if (n == 3){
+        if (n == 2){
             cout << "How many days? : ";
                         while (true)
             {
@@ -727,7 +726,7 @@ void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
     cout << "\n\nLoading Complete.\n";
     Sleep (1000);
     print_header("Gain Muscle");
-	
+
     int i = 0;
      if (sex == 'M' || sex == 'm') {
         int menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
@@ -740,7 +739,7 @@ void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
                 while (true)
         {
         	cin >> n;
-        	if (cin.fail())
+        	if (cin.fail()||n>2||n<1)
         	{
         		cin.clear();
         		cin.ignore(100,'\n');
@@ -752,7 +751,7 @@ void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
 			}
 		}
         cout << endl;
-        if (n == 3){
+        if (n == 2){
             cout << "How many days? : ";
                         while (true)
             {
@@ -789,7 +788,7 @@ void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
                 while (true)
         {
         	cin >> n;
-        	if (cin.fail())
+        	if (cin.fail()||n>2||n<1)
         	{
         		cin.clear();
         		cin.ignore(100,'\n');
@@ -801,7 +800,7 @@ void buffMeUp(Meal* foods, float weight, float height, int age, char sex){
 			}
 		}
         cout << endl;
-        if (n == 3){
+        if (n == 2){
             cout << "How many days? : ";
                         while (true)
             {
@@ -839,7 +838,7 @@ void weightgain(Meal* foods, float weight, float height, int age, char sex) {
     cout << "\n\nLoading Complete.\n";
     Sleep (1000);
     print_header("Weight Gain");
-	
+
     int i = 0;
      if (sex == 'M' || sex == 'm') {
         int menBMR = 88 + (13 * weight) + (5 * height) - (6 * age);
@@ -853,7 +852,7 @@ void weightgain(Meal* foods, float weight, float height, int age, char sex) {
                 while (true)
         {
         	cin >> n;
-        	if (cin.fail())
+        	if (cin.fail()||n>2||n<1)
         	{
         		cin.clear();
         		cin.ignore(100,'\n');
@@ -865,7 +864,7 @@ void weightgain(Meal* foods, float weight, float height, int age, char sex) {
 			}
 		}
         cout << endl;
-        if (n == 3){
+        if (n == 2){
             cout << "How many days? : ";
                         while (true)
             {
@@ -902,7 +901,7 @@ void weightgain(Meal* foods, float weight, float height, int age, char sex) {
                 while (true)
         {
         	cin >> n;
-        	if (cin.fail())
+        	if (cin.fail()||n>2||n<1)
         	{
         		cin.clear();
         		cin.ignore(100,'\n');
@@ -910,11 +909,12 @@ void weightgain(Meal* foods, float weight, float height, int age, char sex) {
 			}
 			else
 			{
+
 				break;
 			}
 		}
         cout << endl;
-        if (n == 3){
+        if (n == 2){
             cout << "How many days? : ";
                         while (true)
             {
